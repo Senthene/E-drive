@@ -12,6 +12,7 @@ import java.util.Date;
  *
  * @author Sénthène
  */
+// test 1
 public class Offre {
     
     private Date date;
