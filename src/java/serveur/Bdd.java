@@ -19,7 +19,9 @@ import java.util.ArrayList;
 /**
  *
  * @author Abdelkarim
+ * test 2
  */
+
 public final class Bdd {
     static private Connection connexion;
     static private Statement instruction = null;
