@@ -5,7 +5,7 @@
  */
 package serveur;
 
-import serveur.Utilisateur;
+import Modèles.Utilisateur;
 import java.awt.Cursor;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Abdelkarim
- * test 6
+ * 
  */
 
 public final class Bdd {

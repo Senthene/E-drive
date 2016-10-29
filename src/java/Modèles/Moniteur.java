@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package serveur;
+package Modèles;
 
 import java.util.ArrayList;
 
@@ -17,8 +17,8 @@ public class Moniteur extends Utilisateur {
     private Voiture voiture;
     private ArrayList <Offre> offres;
 
-    public Moniteur(String n, String p, int tel, String m, String a, String d, int c, String u, String mdp, int age, int e, Voiture v, ArrayList <Offre> o) {
-        super(n, p, tel, m, a, d, c, u, mdp, age);
+    public Moniteur(String n, String p, int tel, String m, String a, String d, int c, String u, String mdp, int age, String dateInscription, int e, Voiture v, ArrayList <Offre> o) {
+        super(n, p, tel, m, a, d, c, u, mdp, age, dateInscription);
         experience = e;
         voiture = v;
         offres = o;
