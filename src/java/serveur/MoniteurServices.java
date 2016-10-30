@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package serveur;
-import serveur.Bdd;
+import BDD.UtilisateurBDD;
 import Modèles.*;
 import com.google.gson.Gson;
 
@@ -18,13 +14,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 /**
  * REST Web Service
  *
  * @author Abdelkarim
  */
-@Path("Personne")
+@Path("Moniteur")
 public class MoniteurServices {
     
     @Context
@@ -68,7 +66,7 @@ public class MoniteurServices {
     @Produces(MediaType.APPLICATION_JSON)
     public String getUtilisateur() {
         
-        utilisateur = Bdd.GenerateUtilisateur();
+        utilisateur = UtilisateurBDD.GenerateUtilisateur();
         String json = new Gson().toJson(utilisateur);
         return json;
     }
@@ -87,9 +85,28 @@ public class MoniteurServices {
     @Produces(MediaType.APPLICATION_JSON) // Sends JSON
     public String getDOnnees(@PathParam("uniqueId") int id){
         // UniqueId représente l'id envoyé par le client
-        if (id >= 0 && id < moniteur.size())
+        if ( id >= 0 && id < moniteur.size())
             return moniteur.get(id).toJSON();
         else
             return "{\"nom\" : \"Inconnu\", \"prenom\" : \"Inconnu\"}";
+    }
+    @GET 
+    @Path("{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}/{exprérience}/{dateInscription}")
+    @Produces(MediaType.TEXT_PLAIN) 
+    public Response getInfo(@PathParam("mail") String mail, 
+                            @PathParam("mdp") String mdp, 
+                            @PathParam("type") String type, 
+                            @PathParam("nom") String nom, 
+                            @PathParam("prenom") String prenom,
+                            @PathParam("dateNaissance") String dateNaissance,
+                            @PathParam("adresse") String adresse,
+                            @PathParam("codePostale") String codePostale,
+                            @PathParam("département") String département,
+                            @PathParam("exprérience") String exprérience,
+                            @PathParam("dateInscription") String dateInscription){
+        return Response
+      .status(Status.OK)
+      .entity("<bonjour>Bonjour ENSMA de la part de " + mail + "</bonjour>")
+      .build();
     }
 }
