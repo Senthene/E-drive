@@ -10,6 +10,8 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import static javax.ws.rs.HttpMethod.POST;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
@@ -90,7 +92,7 @@ public class MoniteurServices {
         else
             return "{\"nom\" : \"Inconnu\", \"prenom\" : \"Inconnu\"}";
     }
-    @GET 
+    @POST
     @Path("{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}/{exprérience}/{dateInscription}")
     @Produces(MediaType.TEXT_PLAIN) 
     public Response getInfo(@PathParam("mail") String mail, 
@@ -104,6 +106,7 @@ public class MoniteurServices {
                             @PathParam("département") String département,
                             @PathParam("exprérience") String exprérience,
                             @PathParam("dateInscription") String dateInscription){
+        
         return Response
       .status(Status.OK)
       .entity("<bonjour>Bonjour ENSMA de la part de " + mail + "</bonjour>")

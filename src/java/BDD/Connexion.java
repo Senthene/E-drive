@@ -18,20 +18,20 @@ public class Connexion {
     static private Connection connexion;
     static private Statement instruction = null;
     
-    static public boolean Connexion()
+    static public Statement Connexion()
     {
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
             connexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/uberpermis", "root", "");
             instruction = connexion.createStatement();
-            return true;
+            return instruction;
         }
         catch (Exception exc)
         {
             javax.swing.JOptionPane.showMessageDialog(null,"Impossible de se connecter au serveur : " + exc);
         }
-        return false;
+        return null;
     }
     
 }

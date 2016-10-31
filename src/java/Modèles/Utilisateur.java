@@ -15,20 +15,21 @@ public class Utilisateur {
     private String adresse;
     private String departement;
     private int codePostale;
-    private int age;
+    private String dateNaissance;
     private String dateInscription;
     
-    public Utilisateur (String n, String p, int tel, String m, String a, String d, int c, String u, String mdp, int age, String dateInscription){
+    public Utilisateur (String m, String mdp, String n, String p, String dateNaissance, int tel, String a, int c, String d, String dateInscription){
      
-        nom =n;
-        prenom = p;
-        numeroTel = tel;
-        mail = m;
-        adresse = a;
-        departement = d;
-        codePostale = c;
+        this.mail = m;
         this.mdp= mdp;
-        this.age = age;
+        this.nom =n;
+        this.prenom = p;
+        this.dateNaissance = dateNaissance;
+        this.numeroTel = tel;
+        this.adresse = a;
+        this.codePostale = c;
+        this.departement = d;       
+        
     }
     
     public Utilisateur() {
@@ -36,7 +37,7 @@ public class Utilisateur {
         this.nom = "";
         this.prenom = "";
         this.mail="";
-        this.age=0;
+        this.dateNaissance="";
         this.numeroTel=0;
         this.adresse = "";
         this.dateInscription = "";
@@ -60,12 +61,12 @@ public class Utilisateur {
     public void setDateInscription(String dateInscription){
         this.dateInscription = dateInscription;
     }
-    public void setAge(int age){
-        this.age = age;
+    public void setDateNaissance(String dateNaissance){
+        this.dateNaissance = dateNaissance;
     }
     // Getter
-    public int getAge(){
-        return age;
+    public String getDateNaissance(){
+        return dateNaissance;
     }
     public String getNom(){
         return nom;

@@ -13,8 +13,8 @@ public class Eleve extends Utilisateur{
     
     private int nbHeureCours;
 
-    public Eleve(String n, String p, int tel, String m, String a, String d, int c, String u, String mdp, int age, String dateInscription, int nbc) {
-        super(n, p, tel, m, a, d, c, u, mdp, age, dateInscription);
+    public Eleve(String n, String p, int tel, String m, String a, String d, int c, String u, String mdp, String dateNaissance, String dateInscription, int nbc) {
+        super(m, mdp, n, p, dateNaissance, tel, a, c, d, dateInscription);
         nbHeureCours = nbc;
     }
 

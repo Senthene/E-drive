@@ -12,16 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>UberPermis</h1>
+        <h1>E-Drive</h1>
         
         <script>
        
         var xmlhttp = new XMLHttpRequest();
         
         function getdetails() {
-        var url = "http://localhost:8080/ServiceUberPermis/webresources/Personne/1";
-        xmlhttp.open('GET',url,true);
-        xmlhttp.send(null);
+        var url = "http://localhost:8080/ServiceUberPermis/webresources/Moniteur/benkaddour.abdellkarim@gmail.com";
+        xmlhttp.open('POST',url,true);
+        //xmlhttp.send(null);
         xmlhttp.onreadystatechange = function() {
 
                if (xmlhttp.readyState == 4) {

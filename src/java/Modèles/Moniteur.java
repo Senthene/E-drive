@@ -17,8 +17,8 @@ public class Moniteur extends Utilisateur {
     private Voiture voiture;
     private ArrayList <Offre> offres;
 
-    public Moniteur(String n, String p, int tel, String m, String a, String d, int c, String u, String mdp, int age, String dateInscription, int e, Voiture v, ArrayList <Offre> o) {
-        super(n, p, tel, m, a, d, c, u, mdp, age, dateInscription);
+    public Moniteur(String n, String p, int tel, String m, String a, String d, int c, String mdp, String dateNaissance, String dateInscription, int e, Voiture v, ArrayList <Offre> o) {
+        super(m, mdp, n, p, dateNaissance, tel, a, c, d, dateInscription);
         experience = e;
         voiture = v;
         offres = o;
