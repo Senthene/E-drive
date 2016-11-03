@@ -21,4 +21,10 @@ public class Voiture {
         modele = mo;
         carburant = c;
     }
+    
+    public Voiture(){
+        this.marque="";
+        this.modele="";
+        this.carburant="";
+    }
 }

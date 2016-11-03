@@ -29,59 +29,39 @@ public class MoniteurServices {
     
     @Context
     private UriInfo context;
-    
-    private ArrayList <Utilisateur> moniteur;
-     private ArrayList <Utilisateur> utilisateur;
+    private String type;
+    private ArrayList <Moniteur> moniteur;
+    private ArrayList <Utilisateur> utilisateur;
+    private Voiture voiture;
+    private ArrayList <Offre> offres;
 
     /**
      * Creates a new instance of UtilisateurServices
      */
     public MoniteurServices() {
         
-        moniteur = new ArrayList<Utilisateur>();
+        moniteur = new ArrayList<Moniteur>();
         utilisateur  = new ArrayList<Utilisateur>();
-
+        offres = new ArrayList<Offre>();
+        voiture = new Voiture();
+        type = "Moniteur";
     }
 
-    /**
-     * Retrieves representation of an instance of WebServices.UtilisateurServices
-     * @return an instance of java.lang.String
-     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getXml() {
-        String s= "{\"Utilisateur\":[";
-        int cpt = 0;
-        for (Utilisateur l : moniteur){
-            if(cpt ==0)
-                s+=l.toJSON();
-            else
-                s+=", "+l.toJSON();
-            cpt++;     
-        }
-
-        return s+"]}\n";
-
-
-    }*/
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getUtilisateur() {
-        
-        utilisateur = UtilisateurBDD.GenerateUtilisateur();
+    public String getUtilisateur(@PathParam("mail") String mail) {
+        utilisateur = UtilisateurBDD.GenerateUtilisateur(mail);
         String json = new Gson().toJson(utilisateur);
         return json;
     }
-      
-    /**
-     * PUT method for updating or creating an instance of UtilisateurServices
-     * @param content representation for the resource
-    
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
+    @GET // This method process GET request from client
+    @Path("Connexion/{mail}/{mdp}")
+    @Produces(MediaType.TEXT_PLAIN) // Sends JSON
+    public boolean getDOnnees(@PathParam("mail") String mail,
+                              @PathParam("mdp") String mdp ){
+        return UtilisateurBDD.Connexion(mail, mdp);
     }
-    */
+    
     @GET // This method process GET request from client
     @Path("{uniqueId}")
     @Produces(MediaType.APPLICATION_JSON) // Sends JSON
@@ -100,16 +80,18 @@ public class MoniteurServices {
                             @PathParam("type") String type, 
                             @PathParam("nom") String nom, 
                             @PathParam("prenom") String prenom,
+                            @PathParam("téléphone") int téléphone,
                             @PathParam("dateNaissance") String dateNaissance,
                             @PathParam("adresse") String adresse,
-                            @PathParam("codePostale") String codePostale,
+                            @PathParam("codePostale") int codePostale,
                             @PathParam("département") String département,
-                            @PathParam("exprérience") String exprérience,
+                            @PathParam("exprérience") int exprérience,
                             @PathParam("dateInscription") String dateInscription){
-        
+        moniteur.add(new Moniteur(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience, voiture, offres));       
         return Response
       .status(Status.OK)
-      .entity("<bonjour>Bonjour ENSMA de la part de " + mail + "</bonjour>")
+      .entity("Bienvenue "+ nom)
       .build();
     }
+
 }

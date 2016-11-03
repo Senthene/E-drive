@@ -1,4 +1,4 @@
-
+                           
 package Modèles;
 
 /**
@@ -9,6 +9,7 @@ public class Utilisateur {
     
     private String nom;
     private String prenom;
+    private String type;
     private String mdp;
     private int numeroTel;
     private String mail;
@@ -17,18 +18,22 @@ public class Utilisateur {
     private int codePostale;
     private String dateNaissance;
     private String dateInscription;
+
     
-    public Utilisateur (String m, String mdp, String n, String p, String dateNaissance, int tel, String a, int c, String d, String dateInscription){
+    public Utilisateur (String m, String mdp, String type, String n, String p, String dateNaissance, int tel, String a, int c, String d, String dateInscription){
      
         this.mail = m;
         this.mdp= mdp;
+        this.type = type;
         this.nom =n;
         this.prenom = p;
         this.dateNaissance = dateNaissance;
         this.numeroTel = tel;
         this.adresse = a;
         this.codePostale = c;
-        this.departement = d;       
+        this.departement = d;
+        this.dateInscription = dateInscription;
+
         
     }
     
@@ -36,11 +41,13 @@ public class Utilisateur {
         
         this.nom = "";
         this.prenom = "";
+        this.type="";
         this.mail="";
         this.dateNaissance="";
         this.numeroTel=0;
         this.adresse = "";
         this.dateInscription = "";
+
     }
     // Setter
     public void setNom(String nom){

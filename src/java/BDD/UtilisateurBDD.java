@@ -6,6 +6,7 @@
 package BDD;
 
 import Modèles.Utilisateur;
+import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import java.awt.Cursor;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,16 +27,19 @@ public final class UtilisateurBDD {
     
     static private Connection connexion;
     static private Statement instruction = null;
+    static private boolean resultat = false;
+    static private ResultSet SelectUtilisateur = null;
 
-    static public ArrayList<Utilisateur> GenerateUtilisateur()
+    static public ArrayList<Utilisateur> GenerateUtilisateur(String mail)
     {
         ArrayList<Utilisateur> returnList = new ArrayList();
         try {
             instruction = Connexion.Connexion();
             if (instruction!=null)
             {
-                ResultSet SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur");
+                SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\"");
                 while (SelectUtilisateur.next()) 
+                    
 
                 {
                     String email = SelectUtilisateur.getString("T01_EMAIL");
@@ -51,15 +55,34 @@ public final class UtilisateurBDD {
                     String depatement = SelectUtilisateur.getString("T01_DEPARTEMENT"); 
                     String dateInscription = SelectUtilisateur.getString("T01_DATE_INSCRIPTION");
 
-                    returnList.add(new Utilisateur(email, mdp, nom, prenom, dateNaissance, telephone, adresse, codePostal, depatement, dateInscription));
+                    returnList.add(new Utilisateur(email, mdp, type, nom, prenom, dateNaissance, telephone, adresse, codePostal, depatement, dateInscription));
                 }
                 instruction.close();
-                connexion.close();
+                SelectUtilisateur.close();
             }
         } catch (Exception ex) {}
         
         return returnList;
             
+    }
+    
+    static public boolean Connexion(String mail, String mdp)
+    {
+        try {
+           
+            instruction = Connexion.Connexion();
+            if (instruction!=null)
+            {
+                SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\" AND T01_MDP=\""+mdp+"\"");
+                resultat = SelectUtilisateur.wasNull();
+                if (resultat = true){
+                    return true;
+                }
+                instruction.close();
+                SelectUtilisateur.close();
+            }
+        } catch (Exception ex) {}
+        return false; 
     }
 
 }
