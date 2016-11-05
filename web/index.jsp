@@ -9,10 +9,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="stylesheet" href="CSS/index.css" />
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>E-Drive</h1>
+        <header>
+            <div class="Menu">
+                <div class="header-Menu">
+                    <div class="header-Menu-logo">
+                        <a class="header-logo" href="index.jsp" title="Revenir à l'accueil de E-Drive, le moteur de recherche des cours de conduites">E-Drive</a>
+                    </div>
+                    <div class="header-Menu-item">
+                        <ul>
+                            <li><a href="Création_Compte.html">S'incrire</a></li>
+                            <li><a href="Connexion.jsp">Se connecter</a></li>
+                            <li><a href="#about">A propos</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="Home">
+            <img src="images/Acceuil.jpg"/>        
+        </div>
+        
         
         <script>
        

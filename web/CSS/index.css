@@ -1,0 +1,80 @@
+.Menu {
+    max-width: 980px;
+    margin: 0 auto;
+}
+.header-Menu {
+    position: relative;
+    display: table;
+    width: 100%;
+    padding-top: 18px;
+    padding-bottom: 23px;
+    z-index: 3;
+    table-layout: fixed;
+    -webkit-transition: padding 0.2s ease-out, position 0.1s ease-out 0.2s;
+    transition: padding 0.2s ease-out, position 0.1s ease-out 0.2s;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.Menu ul {
+    width: 100%;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    font-family: serif; 
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+.Home img {
+    width: 70%;
+}
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+   
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.Home {
+    position: relative;
+    background-color: #3c465a;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
