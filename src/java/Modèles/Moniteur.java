@@ -5,6 +5,7 @@
  */
 package Modèles;
 
+import BDD.UtilisateurBDD;
 import java.util.ArrayList;
 
 /**
@@ -23,11 +24,21 @@ public class Moniteur extends Utilisateur {
         voiture = v;
         offres = o;
     }
+    public Moniteur() {
+        
+    }
     
     public void ajoutOffre(Offre o){
         offres.add(o);
     }
-       
-}
-    
+    public boolean inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, String d, String dateInscription, int e){
+        if(isEmpty(mail) && isEmpty(mdp) && isEmpty(type) && isEmpty(nom) && isEmpty(prenom) && isEmpty(dateNaissance) && isEmpty(d))
+        UtilisateurBDD.Inscription(mail, mdp, type, nom, prenom, dateNaissance, tel, a, c, d, dateInscription, e);
+        return true;
+    }
+        public boolean isEmpty(String chaine) {
+        if (chaine==null) return true;
+        else return false;
+    }
+} 
 

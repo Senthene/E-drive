@@ -34,7 +34,8 @@ public class MoniteurServices {
     private ArrayList <Utilisateur> utilisateur;
     private Voiture voiture;
     private ArrayList <Offre> offres;
-
+    Moniteur moni;
+    private boolean res = true;
     /**
      * Creates a new instance of UtilisateurServices
      */
@@ -72,10 +73,10 @@ public class MoniteurServices {
         else
             return "{\"nom\" : \"Inconnu\", \"prenom\" : \"Inconnu\"}";
     }
-    @POST
-    @Path("{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}/{exprérience}/{dateInscription}")
+    @GET
+    @Path("Compte/{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}/{exprérience}/{dateInscription}")
     @Produces(MediaType.TEXT_PLAIN) 
-    public Response getInfo(@PathParam("mail") String mail, 
+    public Response getInscription(@PathParam("mail") String mail, 
                             @PathParam("mdp") String mdp, 
                             @PathParam("type") String type, 
                             @PathParam("nom") String nom, 
@@ -87,11 +88,18 @@ public class MoniteurServices {
                             @PathParam("département") String département,
                             @PathParam("exprérience") int exprérience,
                             @PathParam("dateInscription") String dateInscription){
-        moniteur.add(new Moniteur(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience, voiture, offres));       
-        return Response
-      .status(Status.OK)
-      .entity("Bienvenue "+ nom)
-      .build();
+        //Vérification des champs
+        
+        //Insertion
+        moni = new Moniteur();
+        res= moni.inscription(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience);
+        
+        //moniteur.add(new Moniteur(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience, voiture, offres));       
+        //return Response
+      //.status(Status.OK)
+      //.entity("Bienvenue "+ nom)
+      //.build();
+        return null;
     }
 
 }
