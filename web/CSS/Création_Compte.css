@@ -1,15 +1,24 @@
 body{
-    padding-top: 40px;
+    padding-top: 20px;
     padding-bottom: 40px;
     background-color: #ffffff;
 }
-.Création {
-    width: 50%;
-    position: relative; /* on positionne le conteneur */
+.Création h1 {
+    text-align: center;
+    font-family: 'Open Sans', arial;
+    color: #501d49;
+    font-size: 38px;
+    font-weight: 300;
+    margin-top: 27px;
+    margin-bottom: 50px;
+}
+.formulaireCréation {
+    margin: 0;
+    padding: 25px;
+    background: #f1f1f1;
+    width: 35%;
     margin-left: auto;
     margin-right: auto;
-    text-align: left;
-    background:#eee;
     font-family: inherit;
     border: 1px solid #C3D4DB;
     border-top:1px;
@@ -19,6 +28,65 @@ body{
     -moz-box-shadow:rgba(0,0,0,0.15) 0 0 1px;
     -webkit-box-shadow:rgba(0,0,0,0.15) 0 0 1px;
     box-shadow:rgba(0,0,0,0.15) 0 0 1px;
+    flex-wrap: wrap;
+}
 
-    overflow:hidden;
+
+.formulaireCréation label {
+    margin: 0 0 .5em;
+    display: inline-block;
+    font-family: 'Open Sans', arial;
+    width: 100%;
+    font-size: 15px;
+    color: #501d49;
+
+}
+.Type {
+    margin: 0 0 .5em;
+    font-family: 'Open Sans', arial;
+    font-size: 13px;
+    color: #501d49;
+}
+.Nom-Prénom input {
+
+    height: 25px;
+    width: 150px;
+    
+}
+.Naissance input {
+    margin: 0 0 0.5em;
+    height: 25px;
+    width: 150px;
+}
+.Email input {
+    margin: 0 0 0.5em;
+    height: 25px;
+    width: 300px;
+}
+.Mdp input {
+    margin: 0 0 0.5em;
+    height: 25px;
+    width: 300px;
+}
+.Téléphone input {
+    margin: 0 0 0.5em;
+    height: 25px;
+    width: 200px;
+}
+.Confirmation {
+    text-align: right;
+    position: relative;
+    font-family: inherit;
+}
+
+.Confirmation input {
+    flex: 1px;
+    height: 30px;
+    width: 175px;
+    font-family: 'Open Sans', arial;
+    color : white;
+    background-color: #8e3582;
+    border: 1px solid #C3D4DB;
+    border-radius: 6px;
+    font-size: 15px;
 }

@@ -21,41 +21,18 @@
                     </div>
                     <div class="header-Menu-item">
                         <ul>
-                            <li><a href="Création_Compte.html">S'incrire</a></li>
-                            <li><a href="Connexion.jsp">Se connecter</a></li>
+                            <li><a href="HTML/Création_Compte.html">S'incrire</a></li>
+                         
+                            <li><a href="HTML/Connexion.jsp">Se connecter</a></li>
                             <li><a href="#about">A propos</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </header>
-        <div class="Home">
+        <div class="Home-recherche">
             <img src="images/Acceuil.jpg"/>        
         </div>
         
-        
-        <script>
-       
-        var xmlhttp = new XMLHttpRequest();
-        
-        function getdetails() {
-        var url = "http://localhost:8080/ServiceUberPermis/webresources/Moniteur/benkaddour.abdellkarim@gmail.com";
-        xmlhttp.open('POST',url,true);
-        //xmlhttp.send(null);
-        xmlhttp.onreadystatechange = function() {
-
-               if (xmlhttp.readyState == 4) {
-                  if ( xmlhttp.status == 200) {
-                       var res = eval( "(" +  xmlhttp.responseText + ")");
-                       alert(res.nom);
-                 }
-                 else
-                       alert("Error ->" + xmlhttp.responseText);
-              }
-        };
-    }
-    getdetails();
-    
-    </script>
     </body>
 </html>

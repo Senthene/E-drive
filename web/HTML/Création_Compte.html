@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Créer votre Compte E-Drive</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../CSS/Création_Compte.css" />
+
+    </head>
+    <body>
+        <div class="Création">
+            <h1>
+                Créer votre compte E-Drive
+            </h1>
+            <form class="formulaireCréation">
+                <div class="Type">
+                    <label>Vous êtes une personne qui souhaite ?</label><br>
+                    <input type="radio" name="group1" value="Moniteur">Donner des cours<br>
+                    <input type="radio" name="group1" value="Elève">Apprendre à conduire<br>
+                </div>
+                <div class="Nom-Prénom">
+                    <label>Nom</label><br>
+                    <input type="text" placeholder="Nom" size="18" id="nom"/>
+                    <input type="text" placeholder="Prénom" size="18" id="prénom"/> <br /><br />
+                </div>
+                <div class="Naissance">
+                    <label>Date de Naissance</label><br>
+                    <input type="date" name="anniversaire" id="naissance"> <br /><br />
+                </div>
+                <div class="Email">
+                    <label>Votre adresse e-mail actuelle</label><br>
+                    <input type="email" placeholder="Clara.Sonier@gmail.com" size="40" id="email"/> <br /><br />
+                </div>
+                <div class="Mdp">
+                    <label>Créez un mot de passe</label><br>
+                    <input type="password" size="40"/> <br /><br />
+                    <label>Confirmez votre mot de passe</label><br>
+                    <input type="password" size="40" id="mdp"/><br /><br />
+                </div>
+                <div class="Téléphone">
+                    <label>Votre numéro de téléphone</label><br>
+                    <input id="téléphone" type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"> <br /><br />
+                </div>
+                <div  class="Confirmation">
+                    <input type="submit" value="Créer votre compte" onClick="CréationCompte();"/>
+                </div>
+        </form>
+        </div>
+        
+        <script>
+        function CréationCompte() {
+            var xmlhttp = new XMLHttpRequest();
+            var type = document.getElementsById('').innerHTML;
+            var nom = document.getElementsById('nom').innerHTML;
+            var prénom = document.getElementsById('prénom').innerHTML;
+            var dateNaissance = document.getElementsById('Naissance').innerHTML;
+            var email = document.getElementsById('email').innerHTML;
+            var mdp = document.getElementsById('mdp').innerHTML;
+            var téléphone = document.getElementsById('téléphone').innerHTML;
+            
+            var url = "http://localhost:8080/ServiceUberPermis/webresources/Moniteur/"+type;
+            alert(url);
+            xmlhttp.open('POST',url,true);
+            //xmlhttp.send(null);
+            xmlhttp.onreadystatechange = function() {
+                   if (xmlhttp.readyState == 4) {
+                      if ( xmlhttp.status == 200) {
+                           var res = eval( "(" +  xmlhttp.responseText + ")");
+                           alert(res.nom);
+                     }
+                     else
+                           alert("Error ->" + xmlhttp.responseText);
+                  }
+            };
+    }    
+    </script>
+    </body>
+</html>
