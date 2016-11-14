@@ -55,12 +55,11 @@ public class MoniteurServices {
         String json = new Gson().toJson(utilisateur);
         return json;
     }
-    @GET // This method process GET request from client
-    @Path("Connexion/{mail}/{mdp}")
+    @GET // Vérifie si l'adresse email existe déja
+    @Path("Connexion/{mail}")
     @Produces(MediaType.TEXT_PLAIN) // Sends JSON
-    public boolean getDOnnees(@PathParam("mail") String mail,
-                              @PathParam("mdp") String mdp ){
-        return UtilisateurBDD.Connexion(mail, mdp);
+    public boolean getEmail(@PathParam("mail") String mail){
+        return UtilisateurBDD.VérifieEmail(mail);
     }
     
     @GET // This method process GET request from client
@@ -73,9 +72,19 @@ public class MoniteurServices {
         else
             return "{\"nom\" : \"Inconnu\", \"prenom\" : \"Inconnu\"}";
     }
-    @GET
-    @Path("Compte/{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}/{exprérience}/{dateInscription}")
-    @Produces(MediaType.TEXT_PLAIN) 
+    @GET // This method process GET request from client
+    @Path("Connexion/{mail}/{mdp}")
+    @Produces(MediaType.TEXT_PLAIN) // Sends JSON
+    public boolean getDOnnees(@PathParam("mail") String mail,
+                              @PathParam("mdp") String mdp ){
+        return UtilisateurBDD.Connexion(mail, mdp);
+    }
+    
+
+    @POST
+    @Consumes("application/x-www-form-urlencoded")
+
+    @Path("Compte/{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}/{exprérience}")
     public Response getInscription(@PathParam("mail") String mail, 
                             @PathParam("mdp") String mdp, 
                             @PathParam("type") String type, 
@@ -85,14 +94,12 @@ public class MoniteurServices {
                             @PathParam("dateNaissance") String dateNaissance,
                             @PathParam("adresse") String adresse,
                             @PathParam("codePostale") int codePostale,
-                            @PathParam("département") String département,
-                            @PathParam("exprérience") int exprérience,
-                            @PathParam("dateInscription") String dateInscription){
+                            @PathParam("département") int département,
+                            @PathParam("exprérience") int exprérience){
         //Vérification des champs
         
-        //Insertion
         moni = new Moniteur();
-        res= moni.inscription(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience);
+        res= moni.inscription(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, exprérience);
         
         //moniteur.add(new Moniteur(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience, voiture, offres));       
         //return Response
@@ -101,5 +108,7 @@ public class MoniteurServices {
       //.build();
         return null;
     }
+    
+
 
 }

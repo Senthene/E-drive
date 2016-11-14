@@ -17,7 +17,7 @@ and open the template in the editor.
             <h1>
                 Créer votre compte E-Drive
             </h1>
-            <form class="formulaireCréation"  method="POST" >
+            <form class="formulaireCréation"  method="POST" onsubmit="return verifForm(this)">
                 <div class="Type">
                     <label>Vous êtes une personne qui souhaite ?</label><br>
                     <input type="radio" name="Type" value="Moniteur">Donner des cours<br>
@@ -25,8 +25,8 @@ and open the template in the editor.
                 </div>
                 <div class="Nom-Prénom">
                     <label>Nom</label><br>
-                    <input type="text" placeholder="Nom" size="18" id="nom"/>
-                    <input type="text" placeholder="Prénom" size="18" id="prénom"/> <br /><br />
+                    <input type="text" placeholder="Nom" size="18" id="nom" onblur="verif_champ(this)"/>
+                    <input type="text" placeholder="Prénom" size="18" id="prénom" onblur="verif_champ(this)"/> <br /><br />
                 </div>
                 <div class="Naissance">
                     <label>Date de Naissance</label><br>
@@ -34,17 +34,23 @@ and open the template in the editor.
                 </div>
                 <div class="Email">
                     <label>Votre adresse e-mail actuelle</label><br>
-                    <input type="email" placeholder="Clara.Sonier@gmail.com" size="40" id="email"/> <br /><br />
+                    <input type="email" placeholder="Clara.Sonier@gmail.com" size="40" id="email" onblur="verifMail(this)"/> <br /><br />
                 </div>
                 <div class="Mdp">
                     <label>Créez un mot de passe</label><br>
-                    <input type="password" size="40"/> <br /><br />
+                    <input id="mdp" type="password" size="40" onblur="verif_champ(this)"/> <br /><br />
                     <label>Confirmez votre mot de passe</label><br>
-                    <input type="password" size="40" id="mdp"/><br /><br />
+                    <input id="mdp2" type="password" size="40" onblur="verif_champ(this)"/><br /><br />
                 </div>
+                <div class="Adresse">
+                    <label>Adresse</label><br>
+                    <input type="text" name="adresse" id="adresse" size="40" placeholder="127 Boulevard de France" onblur="verif_champ(this)"/>
+                    <input id="cp" name="cp" type="text" pattern="[0-9]*" maxlength="5" placeholder="Code Postal" onblur="verif_champ(this)"><br>
+                    <input type="hidden" name="commune" id="commune" size="40"/><br>
+                </div>    
                 <div class="Téléphone">
                     <label>Votre numéro de téléphone</label><br>
-                    <input id="téléphone" type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"> <br /><br />
+                    <input id="téléphone" type="tel" pattern="^0[6-7][0-9]{8}$" maxlength="10" onblur="verif_champ(this)" placeholder="0611001025  sans espace ni tirets" required> <br /><br />
                 </div>
                 <div class="Expérience">
                     <label>Nombre d'heure effectuée</label>

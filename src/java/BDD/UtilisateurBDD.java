@@ -68,6 +68,23 @@ public final class UtilisateurBDD {
         return returnList;
             
     }
+    static public boolean VérifieEmail(String mail)
+    {
+        try {
+            instruction = Connexion.Connexion();
+            if (instruction!=null)
+            {
+                SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\"");
+                resultat = SelectUtilisateur.wasNull();
+                if (resultat = true){
+                    return true;
+                }
+                instruction.close();
+                SelectUtilisateur.close();
+            }
+        } catch (Exception ex) {}
+        return false; 
+    }
     
     static public boolean Connexion(String mail, String mdp)
     {
@@ -88,7 +105,7 @@ public final class UtilisateurBDD {
         return false; 
     }
     
-    static public boolean Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, String d, String dateInscription, int e)
+    static public boolean Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d, int e)
     {
         try {
            
@@ -98,12 +115,13 @@ public final class UtilisateurBDD {
                 SimpleDateFormat formater  = new SimpleDateFormat("dd-MM-yyyy");
                 Date aujourdhui = new Date();
                 String today = formater.format(aujourdhui);
-                instruction.executeUpdate("INSERT INTO t01_list_utilisateur(T01_EMAIL, T01_MDP, T01_TYPE, T01_NOM, T01_PRENOM, T01_DATE_NAISSANCE, T01_TELEPHONE, T01_ADRESSE, T01_CODE_POSTALE, T01_DEPARTEMENT, T01_EXPERIENCE, T01_DATE_INSCRIPTION, T01_DATE_MODIF, T01_ISACTIF) VALUES (\""+mail+"\",\""+mdp+"\",\""+type+"\",\""+nom+"\",\""+prenom+"\",\""+dateNaissance+"\",\""+tel+"\",\""+a+"\",\""+d+"\",\""+c+"\",\""+e+"\",\""+today+"\",\""+today+"\",'1')");
+                //System.out.println("INSERT INTO t01_list_utilisateur(T01_EMAIL, T01_MDP, T01_TYPE, T01_NOM, T01_PRENOM, T01_DATE_NAISSANCE, T01_TELEPHONE, T01_ADRESSE, T01_CODE_POSTALE, T01_DEPARTEMENT, T01_EXPERIENCE, T01_DATE_INSCRIPTION, T01_DATE_MODIF, T01_ISACTIF) VALUES (\""+mail+"\",\""+mdp+"\",\""+type+"\",\""+nom+"\",\""+prenom+"\",\""+dateNaissance+"\",\""+tel+"\",\""+a+"\",\""+c+"\",\""+d+"\",\""+e+"\",\""+today+"\",\""+today+"\",'1')");
+                instruction.executeUpdate("INSERT INTO t01_list_utilisateur(T01_EMAIL, T01_MDP, T01_TYPE, T01_NOM, T01_PRENOM, T01_DATE_NAISSANCE, T01_TELEPHONE, T01_ADRESSE, T01_CODE_POSTALE, T01_DEPARTEMENT, T01_EXPERIENCE, T01_DATE_INSCRIPTION, T01_DATE_MODIF, T01_ISACTIF) VALUES (\""+mail+"\",\""+mdp+"\",\""+type+"\",\""+nom+"\",\""+prenom+"\",\""+dateNaissance+"\",\""+tel+"\",\""+a+"\",\""+c+"\",\""+d+"\",\""+e+"\",\""+today+"\",\""+today+"\",'1')");
                 instruction.close();
                 SelectUtilisateur.close();
             }
         } catch (Exception ex) {}
         return false; 
     }
-
+    
 }
