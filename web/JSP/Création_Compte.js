@@ -14,6 +14,7 @@ function CreationCompte() {
             var email = document.getElementById('email').value;
             var mdp = document.getElementById('mdp').value;
             var téléphone = document.getElementById('téléphone').value;
+            var expérience = document.getElementById('expérience').value;
 
             var url = "http://localhost:8080/ServiceUberPermis/webresources/Moniteur/"+email+"/"+type+"/"+nom+"/"+prénom+"/"+dateNaissance+"/"+téléphone+"/27 Rue des Noisetiers/93240/93/20/13-11-2016";
             alert(url);
