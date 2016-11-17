@@ -83,7 +83,6 @@ public class MoniteurServices {
 
     @POST
     @Consumes("application/x-www-form-urlencoded")
-
     @Path("Compte/{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}/{exprérience}")
     public Response getInscription(@PathParam("mail") String mail, 
                             @PathParam("mdp") String mdp, 

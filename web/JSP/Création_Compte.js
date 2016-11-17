@@ -34,18 +34,13 @@ function CreationCompte() {
                 console.log(url);
                 xmlhttp.open('POST',url,true);
                 xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xmlhttp.onerror = onError;
                 xmlhttp.send(null);
-                xmlhttp.onreadystatechange = function() {
-                       if (xmlhttp.readyState == 4) {
-                          if ( xmlhttp.status == 200) {
-    //                           var res = eval( "(" +  xmlhttp.responseText + ")");
-    //                           alert(res.nom);
-                         }
-                         else
-                               alert("Error ->" + xmlhttp.responseText);
-                      }
-                };
+                
             }
+}
+function onError(e) {
+  alert("Une erreur " + e.target.status + " s'est produite au cours de la réception du document.");
 }
 //Vérification lors de l'ensemble des champs du formulaire
 function verifForm(f)
