@@ -8,6 +8,7 @@ function CreationCompte() {
                     break;
                 }
             }
+            
             var nom = document.getElementById('nom').value;
             var prénom = document.getElementById('prénom').value;
             var dateNaissance = document.getElementById('naissance').value;
