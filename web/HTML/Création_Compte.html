@@ -13,55 +13,66 @@ and open the template in the editor.
         <script src="../JSP/Création_Compte.js" type="text/javascript"></script>
     </head>
     <body>
+
         <div class="Création">
             <h1>
                 Créer votre compte E-Drive
             </h1>
-            <form class="formulaireCréation"  method="POST" onsubmit="return verifForm(this)">
-                <div class="Type">
-                    <label>Vous êtes une personne qui souhaite ?</label><br>
-                    <input type="radio" name="Type" value="Moniteur">Donner des cours<br>
-                    <input type="radio" name="Type" value="Elève">Apprendre à conduire<br>
-                </div>
-                <div class="Nom-Prénom">
-                    <label>Nom</label><br>
-                    <input type="text" placeholder="Nom" size="18" id="nom" onblur="verif_champ(this)"/>
-                    <input type="text" placeholder="Prénom" size="18" id="prénom" onblur="verif_champ(this)"/> <br /><br />
-                </div>
-                <div class="Naissance">
-                    <label>Date de Naissance</label><br>
-                    <input type="date" name="anniversaire" id="naissance"> <br /><br />
-                </div>
-                <div class="Email">
-                    <label>Votre adresse e-mail actuelle</label><br>
-                    <input type="email" placeholder="Clara.Sonier@gmail.com" size="40" id="email" onblur="verifMail(this)"/> <br /><br />
-                </div>
-                <div class="Mdp">
-                    <label>Créez un mot de passe</label><br>
-                    <input id="mdp" type="password" size="40" onblur="verif_champ(this)"/> <br /><br />
-                    <label>Confirmez votre mot de passe</label><br>
-                    <input id="mdp2" type="password" size="40" onblur="verif_champ(this)"/><br /><br />
-                </div>
-                <div class="Adresse">
-                    <label>Adresse</label><br>
-                    <input type="text" name="adresse" id="adresse" size="40" placeholder="127 Boulevard de France" onblur="verif_champ(this)"/>
-                    <input id="cp" name="cp" type="text" pattern="[0-9]*" maxlength="5" placeholder="Code Postal" onblur="verif_champ(this)"><br>
-                    <input type="hidden" name="commune" id="commune" size="40"/><br>
-                </div>    
-                <div class="Téléphone">
-                    <label>Votre numéro de téléphone</label><br>
-                    <input id="téléphone" type="tel" pattern="^0[6-7][0-9]{8}$" maxlength="10" onblur="verif_champ(this)" placeholder="0611001025  sans espace ni tirets" required> <br /><br />
-                </div>
-                <div class="Expérience">
-                    <label>Nombre d'heure effectuée</label>
-                    <input id="expérience" type="number" value="0" min="0"><br/><br/>
-                </div>
-                <div  class="Confirmation">
-                    <input type="submit" value="Créer votre compte" onClick="CreationCompte();"/>
-                </div>
-        </form>
-        </div>
-        
-        
+            <ol id="imageEleve">
+                <ul>
+                    <img src="../images/Eleve.png" alt="" id="Eleve"/>
+                </ul>
+                <ul>
+                    <img src="../images/Moniteur.png" alt="" id="Moniteur"/> 
+                </ul>
+                <ul>
+                <form class="formulaireCréation"  method="POST" onsubmit="return verifForm(this)">
+                    <div class="Type">
+                        <label>Vous êtes une personne qui souhaite ?</label><br>
+                        <input type="radio" name="Type" value="Moniteur" onclick ="génèreImage(this)">Donner des cours<br>
+                        <input type="radio" name="Type" value="Elève" onclick ="génèreImage(this)">Apprendre à conduire<br>
+                    </div>
+                    <div class="Nom-Prénom">
+                        <label>Nom</label><br>
+                        <input type="text" placeholder="Nom" size="18" id="nom" onblur="verif_champ(this)"/>
+                        <input type="text" placeholder="Prénom" size="18" id="prénom" onblur="verif_champ(this)"/> <br /><br />
+                    </div>
+                    <div class="Naissance">
+                        <label>Date de Naissance</label><br>
+                        <input type="date" name="anniversaire" id="naissance"> <br /><br />
+                    </div>
+                    <div class="Email">
+                        <label>Votre adresse e-mail actuelle</label><br>
+                        <input type="email" placeholder="Clara.Sonier@gmail.com" size="40" id="email" onblur="verifMail(this)"/> 
+                        <p id="checkEmail"></p>  <br /><br />
+                    </div>
+                    <div class="Mdp">
+                        <label>Créez un mot de passe</label><br>
+                        <input id="mdp" type="password" size="40" onblur="verif_champ(this)"/> <br /><br />
+                        <label>Confirmez votre mot de passe</label><br>
+                        <input id="mdp2" type="password" size="40" onblur="verif_champ(this)"/><br /><br />
+                    </div>
+                    <div class="Adresse">
+                        <label>Adresse</label><br>
+                        <input type="text" name="adresse" id="adresse" size="40" placeholder="127 Boulevard de France" onblur="verif_champ(this)"/>
+                        <input id="cp" name="cp" type="text" pattern="[0-9]*" maxlength="5" placeholder="Code Postal" onblur="verif_champ(this)"><br>
+                        <input type="hidden" name="commune" id="commune" size="40"/><br>
+                    </div>    
+                    <div class="Téléphone">
+                        <label>Votre numéro de téléphone</label><br>
+                        <input id="téléphone" type="tel" pattern="^0[6-7][0-9]{8}$" maxlength="10" onblur="verif_champ(this)" placeholder="0611001025  sans espace ni tirets" required> <br /><br />
+                    </div>
+                    <div class="Expérience">
+                        <label>Nombre d'heure effectuée</label>
+                        <input id="expérience" type="number" value="0" min="0"><br/><br/>
+                    </div>
+                    <div  class="Confirmation">
+                        <input type="submit" value="Créer votre compte" />
+                    </div>
+                </form>
+                </ul>
+
+                </ol>
+            </div>
     </body>
 </html>

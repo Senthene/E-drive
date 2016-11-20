@@ -1,48 +1,3 @@
-function CreationCompte() {
-
-            //Récupération du Statut du profil
-            var radios = document.getElementsByName('Type');
-            for (var i = 0, length = radios.length; i < length; i++) {
-                if (radios[i].checked) {
-                    var type =radios[i].value;
-                    break;
-                }
-            }
-            
-            var nom = document.getElementById('nom').value;
-            var prénom = document.getElementById('prénom').value;
-            var dateNaissance = document.getElementById('naissance').value;
-            var email = document.getElementById('email').value;
-            var mdp = document.getElementById('mdp').value;
-            var mdp2 = document.getElementById('mdp2').value;
-            var téléphone = document.getElementById('téléphone').value;
-            var expérience = document.getElementById('expérience').value;
-            var adresse = document.getElementById('adresse').value;
-            var cp = document.getElementById('cp').value;
-            
-            //Vérifie email
-            var res = verifEmail(email);
-            
-           //Si le mail est déja utiliser !
-           
-            if ((type=null) && (nom=null) && (prénom=null) && (dateNaissance=null) && (email=null) && (mdp=null) && (mdp2=null) && (téléphone=null) && (expérience=null) && (adresse=null) && (cp=null)){
-                return alert("Veuillez remplir les champs manquants");
-            }
-            else {
-                var xmlhttp = new XMLHttpRequest();
-                var dep = cp.substr(0,2);
-                var url = "http://localhost:8080/E-drive/webresources/Moniteur/Compte/"+email+"/"+mdp+"/"+type+"/"+nom+"/"+prénom+"/"+dateNaissance+"/"+téléphone+"/"+adresse+"/"+cp+"/"+dep+"/"+expérience;
-                console.log(url);
-                xmlhttp.open('POST',url,true);
-                xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xmlhttp.onerror = onError;
-                xmlhttp.send(null);
-                
-            }
-}
-function onError(e) {
-  alert("Une erreur " + e.target.status + " s'est produite au cours de la réception du document.");
-}
 //Vérification lors de l'ensemble des champs du formulaire
 function verifForm(f)
 {
@@ -59,7 +14,7 @@ function verifForm(f)
         var mdp = document.getElementById('mdp').value;
         var mdp2 = document.getElementById('mdp2').value;
         if (mdp == mdp2)
-            return true;
+            CreationCompte();
         else
         {
         alert("Les mots de passes renseignés ne sont identiques");
@@ -71,6 +26,34 @@ function verifForm(f)
       alert("Veuillez remplir correctement tous les champs");
       return false;
    }
+}
+
+function CreationCompte() {
+
+    //Récupération du Statut du profil
+    var radios = document.getElementsByName('Type');
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            var type =radios[i].value;
+            break;
+        }
+    }
+    var nom = document.getElementById('nom').value;
+    var prénom = document.getElementById('prénom').value;
+    var dateNaissance = document.getElementById('naissance').value;
+    var email = document.getElementById('email').value;
+    var mdp = document.getElementById('mdp').value;
+    var téléphone = document.getElementById('téléphone').value;
+    var expérience = document.getElementById('expérience').value;
+    var adresse = document.getElementById('adresse').value;
+    var cp = document.getElementById('cp').value;
+
+    var xmlhttp = new XMLHttpRequest();
+    var dep = cp.substr(0,2);
+    var url = "http://localhost:8080/E-drive/webresources/Moniteur/Compte/"+email+"/"+mdp+"/"+type+"/"+nom+"/"+prénom+"/"+dateNaissance+"/"+téléphone+"/"+adresse+"/"+cp+"/"+dep+"/"+expérience;
+    xmlhttp.open('POST',url,true);
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send(null);
 }
 
 // Vérification du champs Texte
@@ -93,10 +76,24 @@ function verifMail(champ){
     }
     else
     {
-       surligne(champ, false);
-       return true;
-    }
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8080/E-drive/webresources/Utilisateur/Connexion/"+champ.value;
+        xmlhttp.open('GET',url,false);
+        xmlhttp.send(null);
+        if (xmlhttp.status == 200) {
+            if (xmlhttp.responseText=="") {
+                affCach(true, "checkEmail", xmlhttp.responseText);
+                surligne(champ, false);
+                return true;
+            }            
+            else
+                affCach(false, "checkEmail", xmlhttp.responseText);
+                surligne(champ, true);
+                return false;
+        }            
+    } 
 }
+
 //Fonction qui souligne le input en rouge
 function surligne(champ, erreur) {
    if(erreur)
@@ -104,19 +101,24 @@ function surligne(champ, erreur) {
    else
       champ.style.backgroundColor = "";
 }
-function verifEmail(email){
-    
-    var xmlhttp = new XMLHttpRequest();
-    var url = "http://localhost:8080/E-drive/webresources/Moniteur/Connexion/"+email;
-    xmlhttp.open('GET',url,true);
-    xmlhttp.send(null);
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4) {
-            if ( xmlhttp.status == 200) {
-                return true;
-            }
-            else
-                alert("Error ->" + xmlhttp.responseText);
-        }
-    };
+
+function affCach(cache, id, reponse){
+    if (cache){
+        document.getElementById(id).style.display = "none";
+        document.getElementById(id).innerHTML = "";
+    } 
+    else {
+        document.getElementById(id).style.display = "inline";
+        document.getElementById(id).innerHTML = reponse;
+    }
+}
+function génèreImage(champ){
+    if (champ.value == "Moniteur"){
+        document.getElementById("Eleve").style.display = "none";
+        document.getElementById("Moniteur").style.display = "block";
+    } 
+    else {
+        document.getElementById("Eleve").style.display = "block";
+        document.getElementById("Moniteur").style.display = "none";
+    }
 }

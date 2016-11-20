@@ -107,3 +107,26 @@ body{
     border-radius: 6px;
     font-size: 15px;
 }
+
+p {
+    margin: 0 0 0.2em;
+    display: none;
+    display: inline;
+    font-family: 'Open Sans', arial;
+    width: 50%;
+    font-size: 11px;
+    color: red;
+}
+#Eleve {
+    position:absolute; 
+    right:0;
+    margin-right: 120px;
+    display: none;
+}
+#Moniteur {
+    position:absolute; 
+    left:0;
+    margin-left: 120px;
+    display: none;
+}
+

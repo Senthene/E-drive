@@ -55,12 +55,6 @@ public class MoniteurServices {
         String json = new Gson().toJson(utilisateur);
         return json;
     }
-    @GET // Vérifie si l'adresse email existe déja
-    @Path("Connexion/{mail}")
-    @Produces(MediaType.TEXT_PLAIN) // Sends JSON
-    public boolean getEmail(@PathParam("mail") String mail){
-        return UtilisateurBDD.VérifieEmail(mail);
-    }
     
     @GET // This method process GET request from client
     @Path("{uniqueId}")

@@ -11,6 +11,7 @@ import java.awt.Cursor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,8 @@ public final class UtilisateurBDD {
     static private boolean resultat = false;
     static private ResultSet SelectUtilisateur = null;
     SimpleDateFormat formater  = null;
+    private int nombreColonnes = 0;
+    static private ResultSetMetaData metadata ;
 
     static public ArrayList<Utilisateur> GenerateUtilisateur(String mail)
     {
@@ -74,13 +77,16 @@ public final class UtilisateurBDD {
             instruction = Connexion.Connexion();
             if (instruction!=null)
             {
-                SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\"");
-                resultat = SelectUtilisateur.wasNull();
-                if (resultat = true){
+                SelectUtilisateur = instruction.executeQuery("SELECT COUNT(T01_EMAIL) AS count FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\"");
+                SelectUtilisateur.next();
+                if(SelectUtilisateur.getInt("count") == 0) {
+                    instruction.close();
+                    SelectUtilisateur.close();
                     return true;
                 }
                 instruction.close();
                 SelectUtilisateur.close();
+                
             }
         } catch (Exception ex) {}
         return false; 
