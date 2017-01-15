@@ -4,7 +4,7 @@ function verifForm(f)
    var nomOK = verif_champ(f.nom);
    var prénomOK = verif_champ(f.prénom);
    var mailOk = verifMail(f.email);
-   var adresseOK = verif_champ(f.adresse);
+   var adresseOK = verif_champ(f.addresse);
    var mdpOK = verif_champ(f.mdp);
    var mdp2OK = verif_champ(f.mdp2);
    var cpOK = verif_champ(f.cp);
@@ -44,13 +44,13 @@ function CreationCompte() {
     var email = document.getElementById('email').value;
     var mdp = document.getElementById('mdp').value;
     var téléphone = document.getElementById('téléphone').value;
-    var expérience = document.getElementById('expérience').value;
+    //var expérience = document.getElementById('expérience').value;
     var adresse = document.getElementById('adresse').value;
     var cp = document.getElementById('cp').value;
 
     var xmlhttp = new XMLHttpRequest();
     var dep = cp.substr(0,2);
-    var url = "http://localhost:8080/E-drive/webresources/Moniteur/Compte/"+email+"/"+mdp+"/"+type+"/"+nom+"/"+prénom+"/"+dateNaissance+"/"+téléphone+"/"+adresse+"/"+cp+"/"+dep+"/"+expérience;
+    var url = "http://localhost:8080/E-drive/webresources/Utilisateur/Compte/"+email+"/"+mdp+"/"+type+"/"+nom+"/"+prénom+"/"+dateNaissance+"/"+téléphone+"/"+adresse+"/"+cp+"/"+dep;
     xmlhttp.open('POST',url,true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send(null);

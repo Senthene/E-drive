@@ -1,6 +1,8 @@
                            
 package Modèles;
 
+import BDD.UtilisateurBDD;
+
 /**
  *
  * @author Sénthène
@@ -49,6 +51,17 @@ public class Utilisateur {
         this.dateInscription = "";
 
     }
+    
+    public boolean inscription(String mail, String mdp1, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d){
+//        if(isEmpty(mail) && isEmpty(mdp1) && isEmpty(mdp2) && isEmpty(type) && isEmpty(nom) && isEmpty(prenom) && isEmpty(dateNaissance) && isEmpty(a)){
+//                return false;
+
+            UtilisateurBDD.Inscription(mail, mdp1, type, nom, prenom, dateNaissance, tel, a, c, d);
+            return true;
+        
+    }
+    
+    
     // Setter
     public void setNom(String nom){
         this.nom = nom;

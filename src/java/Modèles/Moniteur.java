@@ -31,14 +31,7 @@ public class Moniteur extends Utilisateur {
     public void ajoutOffre(Offre o){
         offres.add(o);
     }
-    public boolean inscription(String mail, String mdp1, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d, int e){
-//        if(isEmpty(mail) && isEmpty(mdp1) && isEmpty(mdp2) && isEmpty(type) && isEmpty(nom) && isEmpty(prenom) && isEmpty(dateNaissance) && isEmpty(a)){
-//                return false;
-
-            UtilisateurBDD.Inscription(mail, mdp1, type, nom, prenom, dateNaissance, tel, a, c, d, e);
-            return true;
-        
-    }
+    
 //      public verifiermail(mail) {
 //      if ((mail.indexOf("@")>=0)&&(mail.indexOf(".")>=0)) {
 //         return true 

@@ -75,33 +75,4 @@ public class MoniteurServices {
     }
     
 
-    @POST
-    @Consumes("application/x-www-form-urlencoded")
-    @Path("Compte/{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}/{exprérience}")
-    public Response getInscription(@PathParam("mail") String mail, 
-                            @PathParam("mdp") String mdp, 
-                            @PathParam("type") String type, 
-                            @PathParam("nom") String nom, 
-                            @PathParam("prenom") String prenom,
-                            @PathParam("téléphone") int téléphone,
-                            @PathParam("dateNaissance") String dateNaissance,
-                            @PathParam("adresse") String adresse,
-                            @PathParam("codePostale") int codePostale,
-                            @PathParam("département") int département,
-                            @PathParam("exprérience") int exprérience){
-        //Vérification des champs
-        
-        moni = new Moniteur();
-        res= moni.inscription(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, exprérience);
-        
-        //moniteur.add(new Moniteur(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience, voiture, offres));       
-        //return Response
-      //.status(Status.OK)
-      //.entity("Bienvenue "+ nom)
-      //.build();
-        return null;
-    }
-    
-
-
 }

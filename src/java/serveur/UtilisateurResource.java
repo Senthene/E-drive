@@ -6,17 +6,23 @@
 package serveur;
 
 import BDD.UtilisateurBDD;
+import Modèles.Moniteur;
+import Modèles.Utilisateur;
+import java.util.ArrayList;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+    
 
 /**
  * REST Web Service
@@ -29,6 +35,8 @@ public class UtilisateurResource {
     @Context
     private UriInfo context;
     private boolean res;
+    private ArrayList <Utilisateur> utilisateur;
+    Utilisateur uti;
 
     /**
      * Creates a new instance of UtilisateurResource
@@ -60,4 +68,34 @@ public class UtilisateurResource {
     @Consumes(MediaType.APPLICATION_XML)
     public void putXml(String content) {
     }
+    
+    @POST
+    @Consumes("application/x-www-form-urlencoded")
+    @Path("Compte/{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}")
+    public Response getInscription(@PathParam("mail") String mail, 
+                            @PathParam("mdp") String mdp, 
+                            @PathParam("type") String type, 
+                            @PathParam("nom") String nom, 
+                            @PathParam("prenom") String prenom,
+                            @PathParam("téléphone") int téléphone,
+                            @PathParam("dateNaissance") String dateNaissance,
+                            @PathParam("adresse") String adresse,
+                            @PathParam("codePostale") int codePostale,
+                            @PathParam("département") int département){
+        //Vérification des champs
+        
+        uti = new Utilisateur();
+        res= uti.inscription(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département);
+        
+        //moniteur.add(new Moniteur(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience, voiture, offres));       
+        //return Response
+      //.status(Status.OK)
+      //.entity("Bienvenue "+ nom)
+      //.build();
+        return null;
+    }
+    
+
+
 }
+
