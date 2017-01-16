@@ -35,7 +35,7 @@ public final class UtilisateurBDD {
     private int nombreColonnes = 0;
     static private ResultSetMetaData metadata ;
 
-    static public ArrayList<Utilisateur> GenerateUtilisateur(String mail)
+    static public ArrayList<Utilisateur> GenerateUtilisateur(String mail, String passe)
     {
         ArrayList<Utilisateur> returnList = new ArrayList();
         try {
@@ -43,7 +43,7 @@ public final class UtilisateurBDD {
             if (instruction!=null)
             {
                 
-                SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\"");
+                SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\" AND T01_MDP=\""+passe+"\"");
                 while (SelectUtilisateur.next()) 
                     
 
@@ -71,6 +71,7 @@ public final class UtilisateurBDD {
         return returnList;
             
     }
+    
     static public boolean VérifieEmail(String mail)
     {
         try {
@@ -91,26 +92,7 @@ public final class UtilisateurBDD {
         } catch (Exception ex) {}
         return false; 
     }
-    
-    static public boolean Connexion(String mail, String mdp)
-    {
-        try {
-           
-            instruction = Connexion.Connexion();
-            if (instruction!=null)
-            {
-                SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\" AND T01_MDP=\""+mdp+"\"");
-                resultat = SelectUtilisateur.wasNull();
-                if (resultat = true){
-                    return true;
-                }
-                instruction.close();
-                SelectUtilisateur.close();
-            }
-        } catch (Exception ex) {}
-        return false; 
-    }
-    
+      
     static public boolean Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
     {
         try {

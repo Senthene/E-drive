@@ -45,12 +45,12 @@ function CreationCompte() {
     var mdp = document.getElementById('mdp').value;
     var téléphone = document.getElementById('téléphone').value;
     //var expérience = document.getElementById('expérience').value;
-    var adresse = document.getElementById('adresse').value;
+    var adresse = document.getElementById('addresse').value;
     var cp = document.getElementById('cp').value;
 
     var xmlhttp = new XMLHttpRequest();
     var dep = cp.substr(0,2);
-    var url = "http://localhost:8080/E-drive/webresources/Utilisateur/Compte/"+email+"/"+mdp+"/"+type+"/"+nom+"/"+prénom+"/"+dateNaissance+"/"+téléphone+"/"+adresse+"/"+cp+"/"+dep;
+    var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Compte/Création/"+email+"/"+mdp+"/"+type+"/"+nom+"/"+prénom+"/"+dateNaissance+"/"+téléphone+"/"+adresse+"/"+cp+"/"+dep;
     xmlhttp.open('POST',url,true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send(null);
@@ -76,21 +76,26 @@ function verifMail(champ){
     }
     else
     {
-        var xmlhttp = new XMLHttpRequest();
-        var url = "http://localhost:8080/E-drive/webresources/Utilisateur/Connexion/"+champ.value;
-        xmlhttp.open('GET',url,false);
-        xmlhttp.send(null);
-        if (xmlhttp.status == 200) {
-            if (xmlhttp.responseText=="") {
-                affCach(true, "checkEmail", xmlhttp.responseText);
-                surligne(champ, false);
-                return true;
-            }            
-            else
-                affCach(false, "checkEmail", xmlhttp.responseText);
-                surligne(champ, true);
-                return false;
-        }            
+        return true;
+//        var xmlhttp = new XMLHttpRequest();
+//        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Connexion/"+champ.value;
+//        xmlhttp.open('GET',url, true);
+//        xmlhttp.send(null);
+//        xmlhttp.onreadystatechange = function() {
+//            if (xmlhttp.status == 200) {
+//                var resp =xmlhttp.responseText;
+//                if (resp == false) {
+//                    //affCach(true, "checkEmail", xmlhttp.responseText);
+//                    surligne(champ, false);
+//                    //return true;
+//                }            
+//                else{   
+//                    //affCach(false, "checkEmail", xmlhttp.responseText);
+//                    surligne(champ, true);
+//                    //sreturn false;
+//                }
+//            }
+//        };
     } 
 }
 

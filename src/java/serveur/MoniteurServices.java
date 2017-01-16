@@ -47,14 +47,6 @@ public class MoniteurServices {
         voiture = new Voiture();
         type = "Moniteur";
     }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getUtilisateur(@PathParam("mail") String mail) {
-        utilisateur = UtilisateurBDD.GenerateUtilisateur(mail);
-        String json = new Gson().toJson(utilisateur);
-        return json;
-    }
     
     @GET // This method process GET request from client
     @Path("{uniqueId}")
@@ -66,13 +58,7 @@ public class MoniteurServices {
         else
             return "{\"nom\" : \"Inconnu\", \"prenom\" : \"Inconnu\"}";
     }
-    @GET // This method process GET request from client
-    @Path("Connexion/{mail}/{mdp}")
-    @Produces(MediaType.TEXT_PLAIN) // Sends JSON
-    public boolean getDOnnees(@PathParam("mail") String mail,
-                              @PathParam("mdp") String mdp ){
-        return UtilisateurBDD.Connexion(mail, mdp);
-    }
+
     
 
 }

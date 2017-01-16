@@ -8,6 +8,7 @@ package serveur;
 import BDD.UtilisateurBDD;
 import Modèles.Moniteur;
 import Modèles.Utilisateur;
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -49,17 +50,29 @@ public class UtilisateurResource {
      * @return an instance of java.lang.String
      */
     @GET // Vérifie si l'adressse email existe deja.
-    @Path("Connexion/{mail}")
+    @Path("Vérification/{mail}")
     @Produces(MediaType.TEXT_HTML)
     public Response getEmail(@PathParam("mail") String mail){
         res =UtilisateurBDD.VérifieEmail(mail);
         if (res){
+            //Si l'email existe pas
             return Response.status(Response.Status.OK).entity("").build();
-        }
-            return Response.status(Response.Status.OK).entity("Cet e-mail est déja utilisé").build(); 
-        }
 
-    
+        }
+        else {
+            return Response.status(Response.Status.OK).entity("ok").build(); 
+        }
+    }
+
+    @GET //Connexion
+    @Path("Connexion/{mail}/{mdp}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getUtilisateur(@PathParam("mail") String mail,
+                              @PathParam("mdp") String passe) {
+        utilisateur = UtilisateurBDD.GenerateUtilisateur(mail, passe);
+        String json = new Gson().toJson(utilisateur);
+        return json;
+    }
     /**
      * PUT method for updating or creating an instance of UtilisateurResource
      * @param content representation for the resource
@@ -71,7 +84,7 @@ public class UtilisateurResource {
     
     @POST
     @Consumes("application/x-www-form-urlencoded")
-    @Path("Compte/{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}")
+    @Path("Compte/Création/{mail}/{mdp}/{type}/{nom}/{prenom}/{dateNaissance}/{téléphone}/{adresse}/{codePostale}/{département}")
     public Response getInscription(@PathParam("mail") String mail, 
                             @PathParam("mdp") String mdp, 
                             @PathParam("type") String type, 
@@ -94,8 +107,6 @@ public class UtilisateurResource {
       //.build();
         return null;
     }
-    
-
 
 }
 
