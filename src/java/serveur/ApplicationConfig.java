@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(serveur.MoniteurServices.class);
+        resources.add(serveur.Offre.class);
         resources.add(serveur.UtilisateurResource.class);
     }
     

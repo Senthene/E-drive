@@ -1,0 +1,10 @@
+{
+    "elements": {
+        "style": {}
+    },
+    "attributes": {
+        "width": {
+            "context": "input"
+        }
+    }
+}
