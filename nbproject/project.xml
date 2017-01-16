@@ -11,7 +11,6 @@
             <web-module-libraries>
                 <library dirs="200">
                     <file>${file.reference.gson-2.2.2.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.mysql-connector-java-5.1.40-bin.jar}</file>
