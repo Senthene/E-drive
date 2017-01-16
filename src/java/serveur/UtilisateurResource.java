@@ -56,7 +56,7 @@ public class UtilisateurResource {
         if (res){
             return Response.status(Response.Status.OK).entity("").build();
         }
-            return Response.status(Response.Status.OK).entity("Cette e-mail est déja utilisé").build(); 
+            return Response.status(Response.Status.OK).entity("Cet e-mail est déja utilisé").build(); 
         }
 
     
