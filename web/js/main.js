@@ -169,7 +169,14 @@ jQuery(function($) {
 		$('.modal:visible').each(centerModal);
 	});
         
-        function recherche(){
+      
+   /* else
+    {
+       alert("Veuillez remplir correctement tous les champs");
+    }*/
+
+});
+  function recherche(){
     
         var recherche = document.getElementById('recherche').value;
         var codepostale;
@@ -192,8 +199,15 @@ jQuery(function($) {
          
                if (xmlhttp.readyState == 4) {
                  if ( xmlhttp.status == 200) {
-                    var resp = eval( "(" +  xmlhttp.responseText + ")");
-                 
+                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+                    var key = "modele";
+                   // var jsonObject = JSON.parse(resp);
+                     
+                    //alert(jsonObject)
+                    alert(resp.mail);
+                      //alert(xmlhttp.responseText);
+                      console.log(resp);
+                  
                     if (resp.echec != null) {
                         alert(resp.echec);
                     }
@@ -205,9 +219,3 @@ jQuery(function($) {
         };
 
     }
-   /* else
-    {
-       alert("Veuillez remplir correctement tous les champs");
-    }*/
-
-});
