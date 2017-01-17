@@ -20,6 +20,7 @@ public class Utilisateur {
     private int codePostale;
     private String dateNaissance;
     private String dateInscription;
+    private String experience;
 
     
     public Utilisateur (String m, String mdp, String type, String n, String p, String dateNaissance, int tel, String a, int c, String d, String dateInscription){
@@ -49,6 +50,7 @@ public class Utilisateur {
         this.numeroTel=0;
         this.adresse = "";
         this.dateInscription = "";
+        experience ="";
 
     }
     

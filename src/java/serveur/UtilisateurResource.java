@@ -44,11 +44,23 @@ public class UtilisateurResource {
      */
     public UtilisateurResource() {
     }
+    @GET
+    @Produces(MediaType.APPLICATION_XML)
+    public String getXml() {
+        throw new UnsupportedOperationException();
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_XML)
+    public void putXml(String content) {
+    }
 
     /**
      * Retrieves representation of an instance of serveur.UtilisateurResource
      * @return an instance of java.lang.String
      */
+    
+    /*
     @GET // Vérifie si l'adressse email existe deja.
     @Path("Vérification/{mail}")
     @Produces(MediaType.TEXT_HTML)
@@ -76,7 +88,7 @@ public class UtilisateurResource {
     /**
      * PUT method for updating or creating an instance of UtilisateurResource
      * @param content representation for the resource
-     */
+     /*
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
     public void putXml(String content) {
@@ -107,6 +119,7 @@ public class UtilisateurResource {
       //.build();
         return null;
     }
+*/
 
 }
 

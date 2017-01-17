@@ -27,9 +27,7 @@ public class MoniteurBDD {
      static private Connection connexion;
     static private Statement instruction = null;
     static private boolean resultat = false;
-    static private ResultSet SelectMoniteur = null;
-    static private ResultSet SelectVoiture = null;
-    SimpleDateFormat formater  = null;
+       SimpleDateFormat formater  = null;
     private int nombreColonnes = 0;
     static private ResultSetMetaData metadata ;
     
@@ -41,11 +39,13 @@ public class MoniteurBDD {
             instruction = Connexion.Connexion();
             if (instruction!=null)
             {
+                ResultSet SelectMoniteur = null;
                 if (dep == 0){
-                    SelectMoniteur = instruction.executeQuery("SELECT * FROM t05_list_moniteur WHERE T05_CODEPOSTALE=\""+code+"\"");
+                    SelectMoniteur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur LEFT JOIN t02_list_voiture ON T01_EMAIL = T02_EMAIL WHERE T01_CODEPOSTALE=\""+code+"\" AND T01_TYPE = \"Moniteur\" ");
+               
                 }
                 else {
-                    SelectMoniteur = instruction.executeQuery("SELECT * FROM t05_list_moniteur WHERE T05_DEPARTEMENT=\""+dep+"\"");
+                    SelectMoniteur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur LEFT JOIN t02_list_voiture ON T01_EMAIL = T02_EMAIL WHERE T01_DEPARTEMENT=\""+dep+"\"AND T01_TYPE = \"Moniteur\"");
                 }
                
                 while (SelectMoniteur.next()) 
@@ -54,29 +54,34 @@ public class MoniteurBDD {
                 {
                     
                     
-                    String email = SelectMoniteur.getString("T05_EMAIL");
-                    String mdp = SelectMoniteur.getString("T05_MDP");
-                    String type = SelectMoniteur.getString("T05_TYPE");
-                    String nom = SelectMoniteur.getString("T05_NOM");
-                    String prenom = SelectMoniteur.getString("T05_PRENOM");
-                    String dateNaissance = SelectMoniteur.getString("T05_DATE_NAISSANCE");
-                    int telephone = SelectMoniteur.getInt("T05_TELEPHONE");
-                    String adresse = SelectMoniteur.getString("T05_ADRESSE");
-                    int codePostal = SelectMoniteur.getInt("T05_CODE_POSTALE"); 
-                    String depatement = SelectMoniteur.getString("T05_DEPARTEMENT"); 
-                    String dateInscription = SelectMoniteur.getString("T05_DATE_INSCRIPTION");
-                    int idVoiture = SelectMoniteur.getInt("T05_ID_VOITURE");
+                    String email = SelectMoniteur.getString("T01_EMAIL");
+                    String mdp = SelectMoniteur.getString("T01_MDP");
+                    String type = SelectMoniteur.getString("T01_TYPE");
+                    String nom = SelectMoniteur.getString("T01_NOM");
+                    String prenom = SelectMoniteur.getString("T01_PRENOM");
+                    String dateNaissance = SelectMoniteur.getString("T01_DATE_NAISSANCE");
+                    int telephone = SelectMoniteur.getInt("T01_TELEPHONE");
+                    String adresse = SelectMoniteur.getString("T01_ADRESSE");
+                    int codePostal = SelectMoniteur.getInt("T01_CODE_POSTALE"); 
+                    String depatement = SelectMoniteur.getString("T01_DEPARTEMENT"); 
+                    String dateInscription = SelectMoniteur.getString("T01_DATE_INSCRIPTION");
+                    int experience = SelectMoniteur.getInt("T01_EXPERIENCE");
+                    //int idVoiture = SelectMoniteur.getInt("T01_ID_VOITURE");
                     
                     // On récupère la voiture du moniteur
                     
-                    SelectVoiture = instruction.executeQuery("SELECT * FROM t02_list_voiture WHERE T02_ID_VOITURE=\""+idVoiture+"\"");
-                            String marque = SelectVoiture.getString("T02_MARQUE");
-                            String modele = SelectVoiture.getString("T02_MODELE");
-                            String carburant = SelectVoiture.getString("T02_CARBURANT");
-                            Voiture voiture = new Voiture(marque, modele, carburant);
+                     Voiture voiture = null;
+                  
+                           String marque = SelectMoniteur.getString("T02_MARQUE");
+                            String modele = SelectMoniteur.getString("T02_MODELE");
+                            String carburant = SelectMoniteur.getString("T02_CARBURANT");
+                            voiture = new Voiture(marque, modele, carburant);
                             
-                    returnList.add(new Moniteur(email, mdp, type, nom, prenom, dateNaissance, telephone, adresse, codePostal, depatement, dateInscription, voiture));
-                }
+                    
+                            if (voiture !=null) {
+                    returnList.add(new Moniteur(email, mdp, type, nom, prenom, dateNaissance, telephone, adresse, codePostal, depatement, dateInscription, experience, voiture));
+                            }
+                     }
                 instruction.close();
                 SelectMoniteur.close();
             }

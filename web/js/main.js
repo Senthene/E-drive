@@ -188,6 +188,21 @@ jQuery(function($) {
         var url = "http://localhost:8080/E-DRIVE/webresources/Moniteur/Recherche/"+codepostale+"/"+departement;
         xmlhttp.open('GET',url,true);
         xmlhttp.send(null);
+        xmlhttp.onreadystatechange = function() {
+         
+               if (xmlhttp.readyState == 4) {
+                 if ( xmlhttp.status == 200) {
+                    var resp = eval( "(" +  xmlhttp.responseText + ")");
+                 
+                    if (resp.echec != null) {
+                        alert(resp.echec);
+                    }
+                 }
+                 else {
+                    alert("Error ->" + xmlhttp.responseText);
+                 }
+              }
+        };
 
     }
    /* else

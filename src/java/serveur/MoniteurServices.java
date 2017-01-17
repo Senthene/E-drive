@@ -49,7 +49,18 @@ public class MoniteurServices {
         type = "Moniteur";
     }
     
-    @GET // This method process GET request from client
+    @GET
+    @Produces(MediaType.APPLICATION_XML)
+    public String getXml() {
+        throw new UnsupportedOperationException();
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_XML)
+    public void putXml(String content) {
+    }
+    
+ /*   @GET // This method process GET request from client
     @Path("{uniqueId}")
     @Produces(MediaType.APPLICATION_JSON) // Sends JSON
     public String getDOnnees(@PathParam("uniqueId") int id){
@@ -58,18 +69,20 @@ public class MoniteurServices {
             return moniteur.get(id).toJSON();
         else
             return "{\"nom\" : \"Inconnu\", \"prenom\" : \"Inconnu\"}";
-    }
+    }*/
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("Recherche/{codePostale}/{departement}")
-    public String getRecherche(@PathParam("codePostale") int codepostale,@PathParam("departement") int departement){
+    public Response getRecherche(@PathParam("codePostale") int codepostale,@PathParam("departement") int departement){
         moniteur = MoniteurBDD.rechercheMoniteur(codepostale, departement);
         String json = new Gson().toJson(moniteur);
-        return json;
+        json =json.replace("\"", "'");
+        json =json.replace("[", "");
+        json =json.replace("]", "");
+        return Response.status(200).entity(json).type(MediaType.APPLICATION_JSON).build();
        
     }
 
-
-    
-
 }
+
