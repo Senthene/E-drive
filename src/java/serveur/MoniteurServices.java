@@ -1,5 +1,6 @@
 
 package serveur;
+import BDD.MoniteurBDD;
 import BDD.UtilisateurBDD;
 import Modèles.*;
 import com.google.gson.Gson;
@@ -58,6 +59,16 @@ public class MoniteurServices {
         else
             return "{\"nom\" : \"Inconnu\", \"prenom\" : \"Inconnu\"}";
     }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("Recherche/{codePostale}/{departement}")
+    public String getRecherche(@PathParam("codePostale") int codepostale,@PathParam("departement") int departement){
+        moniteur = MoniteurBDD.rechercheMoniteur(codepostale, departement);
+        String json = new Gson().toJson(moniteur);
+        return json;
+       
+    }
+
 
     
 

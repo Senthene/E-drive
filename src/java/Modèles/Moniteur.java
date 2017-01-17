@@ -14,15 +14,20 @@ import java.util.ArrayList;
  */
 public class Moniteur extends Utilisateur {
     
-    private int experience;
+    
     private Voiture voiture;
     private ArrayList <Offre> offres;
 
     public Moniteur(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, String d, String dateInscription, int e, Voiture v, ArrayList <Offre> o) {
         super(mail, mdp, type, nom, prenom, dateNaissance, tel, a, c, d, dateInscription);
-        experience = e;
+       
         voiture = v;
         offres = o;
+    }
+        public Moniteur(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, String d, String dateInscription, Voiture v) {
+        super(mail, mdp, type, nom, prenom, dateNaissance, tel, a, c, d, dateInscription);
+       
+        voiture = v;
     }
     public Moniteur() {
         

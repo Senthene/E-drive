@@ -38,21 +38,7 @@ public class Offre {
      * Retrieves representation of an instance of serveur.Offre
      * @return an instance of java.lang.String
      */
-    @GET
-    @Produces(MediaType.APPLICATION_XML)
-    @Path("recherche/{codePostale}/{departement}")
-    public Response getRecherche(@PathParam("codePostale") int codepostale,@PathParam("departement") int departement){
-        //Vérification des champs
-        
-        
-        //moniteur.add(new Moniteur(mail, mdp, type, nom, prenom, dateNaissance, téléphone, adresse, codePostale, département, dateInscription, exprérience, voiture, offres));       
-        //return Response
-      //.status(Status.OK)
-      //.entity("Bienvenue "+ nom)
-      //.build();
-        return null;
-    }
-
+    
     /**
      * PUT method for updating or creating an instance of Offre
      * @param content representation for the resource

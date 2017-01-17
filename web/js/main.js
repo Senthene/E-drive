@@ -168,4 +168,31 @@ jQuery(function($) {
 	$(window).on("resize", function() {
 		$('.modal:visible').each(centerModal);
 	});
+        
+        function recherche(){
+    
+        var recherche = document.getElementById('recherche').value;
+        var codepostale;
+        var departement;
+        if (recherche.length == 2){
+            codepostale = 0;
+            departement = recherche;
+        }
+        else {
+            codepostale = recherche;
+            departement = 0;
+        }
+        
+        
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8080/E-DRIVE/webresources/Moniteur/Recherche/"+codepostale+"/"+departement;
+        xmlhttp.open('GET',url,true);
+        xmlhttp.send(null);
+
+    }
+   /* else
+    {
+       alert("Veuillez remplir correctement tous les champs");
+    }*/
+
 });
