@@ -52,11 +52,11 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
-					<li><a href="#intro">Accueil</a></li>
-					<li><a href="#services">Services</a></li>
-					<li><a href="#team">Team</a></li>
-                                        <li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Se Connecter</a></li>
-                                        <li><a href="HTML/Inscription.html" class="btn btn-blue">Inscription</a></li>
+					<li><a href="../index.html">Accueil</a></li>
+					<li><a href="#MonProfil">Mon Profil</a></li>
+					<li><a href="#MesOffres">Mes offres</a></li>
+                                        <li><a href="#AjouterOffre">Ajouter une offre</a></li>
+                                        <li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Se Déconnecter</a></li>
 					<li></li>
 				</ul>
 			</div>
@@ -77,32 +77,47 @@
                                                                                           
                                                     <input  type="text" placeholder = "Recherchez par code postale ou par département" class="form-control form-white" id="recherche" />
                                                     <input type="button" class="btn btn-blue" onclick = "recherche()" value = "Rechercher un moniteur" />
+                                                      
+                                         
 				</div>
 			</div>
 		</div>
 
 	</header>
 
-	<section>
+	<section id="MonProfil" class="section section-padded">
+		<div class="container">
+			<div class="row text-center title">
+				<h2>Mon Profil</h2>
+				<p id="NomPrenom" class="light muted">Aurélien Martin</p>
+                                <p id="Email" class="light muted">martin@gmail.com</p>
+                                <p id="Numero" class="light muted">06291519856</p>
+                                <p id="Voiture" class="light muted">206</p>
+                                <p id="Experience" class="light muted">15h</p>
+                                <p id="Addresse" class="light muted">12 rue Albert Camus</p>
+                                <p id="cp" class="light muted">91000</p>
+			</div>
+                        <button type="submit" class="btn btn-blue">Modifier votre profil</button>
+			
+		</div>
+		<div class="cut cut-bottom"></div>
+	</section>
+	<section id="MesOffres" class="section gray-bg">
 		
 	</section>
-	<section id="services" class="section section-padded">
-		
-	</section>
-	<section id="team" class="section gray-bg">
-		
-	</section>
-
+>
 	<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content modal-popup">
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-				<h3 class="white">Connexion</h3>
-				<form class="popup-form" onsubmit="return verifFormConn(this)">
-                                        <input type="email" class="form-control form-white" placeholder="Email" id="email" onblur="verifMailConn(this)"/> 
-                                        <input type="password" class="form-control form-white" placeholder="Mot de Passe" id="mdp" onblur="verif_champConn(this)"/> 
-                                        
-                                        <button type="submit" class="btn btn-submit">Se connecter</button>
+				<h3 class="white">Ajouter une offre</h3>
+				<form class="popup-form" onsubmit="return verifFormOffre(this)">
+                                        <input type="text" class="form-control form-white" placeholder="Votre prix" id="Prix" onblur="verifFormOffre(this)"/> 
+                                        <input type="date" class="form-control form-white" id="Date" onblur="verifFormOffre(this)"/> 
+                                        <input type="time" class="form-control form-white" id="Hdébut" onblur="verifFormOffre(this)"/> 
+                                        <input type="time" class="form-control form-white" id="HFin" onblur="verifFormOffre(this)"/>
+                                                                              
+                                        <button type="submit" class="btn btn-submit">Ajouter</button>
 				</form>
 			</div>
 		</div>

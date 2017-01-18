@@ -45,7 +45,6 @@ public final class UtilisateurBDD {
                 
                 SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\" AND T01_MDP=\""+passe+"\"");
                 while (SelectUtilisateur.next()) 
-                    
 
                 {
                     String email = SelectUtilisateur.getString("T01_EMAIL");
