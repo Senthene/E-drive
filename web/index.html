@@ -92,18 +92,20 @@
 	<section id="team" class="section gray-bg">
 		
 	</section>
-
+    
 	<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content modal-popup">
-				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+				<a  class="close-link"><i class="icon_close_alt2"></i></a>
 				<h3 class="white">Connexion</h3>
-				<form class="popup-form" onsubmit="return verifFormConn(this)">
+				<form class="popup-form" >
                                         <input type="email" class="form-control form-white" placeholder="Email" id="email" onblur="verifMailConn(this)"/> 
                                         <input type="password" class="form-control form-white" placeholder="Mot de Passe" id="mdp" onblur="verif_champConn(this)"/> 
                                         
-                                        <button type="submit" class="btn btn-submit">Se connecter</button>
-				</form>
+                                        <a class="btn btn-submit" onclick="Connexion()">Se connecter</a>
+                                        <a id="profil" href="HTML/Profil.html"></a>
+                 
+                                </form>
 			</div>
 		</div>
 	</div>
@@ -134,7 +136,7 @@
 	<script src="js/typewriter.js"></script>
 	<script src="js/jquery.onepagenav.js"></script>
 	<script src="js/main.js"></script>
-        <script src="js/Connexion_Compte.js" type="text/javascript"></script>
+        <script src="js/Connexion_Compte.js"></script>
 
 </body>
 

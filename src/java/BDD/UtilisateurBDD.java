@@ -30,7 +30,7 @@ public final class UtilisateurBDD {
     static private Connection connexion;
     static private Statement instruction = null;
     static private boolean resultat = false;
-    static private ResultSet SelectUtilisateur = null;
+
     SimpleDateFormat formater  = null;
     private int nombreColonnes = 0;
     static private ResultSetMetaData metadata ;
@@ -42,7 +42,7 @@ public final class UtilisateurBDD {
             instruction = Connexion.Connexion();
             if (instruction!=null)
             {
-                
+                ResultSet SelectUtilisateur = null;
                 SelectUtilisateur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur WHERE T01_EMAIL=\""+mail+"\" AND T01_MDP=\""+passe+"\"");
                 while (SelectUtilisateur.next()) 
 
@@ -74,6 +74,7 @@ public final class UtilisateurBDD {
     static public boolean VérifieEmail(String mail)
     {
         try {
+            ResultSet SelectUtilisateur = null;
             instruction = Connexion.Connexion();
             if (instruction!=null)
             {
@@ -95,7 +96,7 @@ public final class UtilisateurBDD {
     static public boolean Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
     {
         try {
-           
+            ResultSet SelectUtilisateur = null;
             instruction = Connexion.Connexion();
             if (instruction!=null)
             {   

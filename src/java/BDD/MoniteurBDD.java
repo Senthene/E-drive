@@ -24,10 +24,10 @@ import java.util.Date;
  */
 public class MoniteurBDD {
     
-     static private Connection connexion;
+    static private Connection connexion;
     static private Statement instruction = null;
     static private boolean resultat = false;
-       SimpleDateFormat formater  = null;
+    SimpleDateFormat formater  = null;
     private int nombreColonnes = 0;
     static private ResultSetMetaData metadata ;
     

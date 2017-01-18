@@ -50,10 +50,10 @@ public class Utilisateur {
         this.dateNaissance="";
         this.numeroTel=0;
         this.adresse = "";
-        this.dateInscription = "";
         this.codePostale = 0;
         this.departement = 0;
-        this.experience = -1;
+        this.dateInscription = "";
+
 
     }
     
