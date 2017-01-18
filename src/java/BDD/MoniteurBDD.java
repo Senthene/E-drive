@@ -63,7 +63,7 @@ public class MoniteurBDD {
                     int telephone = SelectMoniteur.getInt("T01_TELEPHONE");
                     String adresse = SelectMoniteur.getString("T01_ADRESSE");
                     int codePostal = SelectMoniteur.getInt("T01_CODE_POSTALE"); 
-                    String depatement = SelectMoniteur.getString("T01_DEPARTEMENT"); 
+                    int depatement = SelectMoniteur.getInt("T01_DEPARTEMENT"); 
                     String dateInscription = SelectMoniteur.getString("T01_DATE_INSCRIPTION");
                     int experience = SelectMoniteur.getInt("T01_EXPERIENCE");
                     //int idVoiture = SelectMoniteur.getInt("T01_ID_VOITURE");

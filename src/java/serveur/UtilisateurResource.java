@@ -43,6 +43,7 @@ public class UtilisateurResource {
      * Creates a new instance of UtilisateurResource
      */
     public UtilisateurResource() {
+        utilisateur  = new ArrayList<Utilisateur>();
     }
     @GET
     @Produces(MediaType.APPLICATION_XML)
@@ -75,16 +76,20 @@ public class UtilisateurResource {
             return Response.status(Response.Status.OK).entity("ok").build(); 
         }
     }
-
-    @GET //Connexion
+*/
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)//Connexion
     @Path("Connexion/{mail}/{mdp}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getUtilisateur(@PathParam("mail") String mail,
-                              @PathParam("mdp") String passe) {
+    public Response getUtilisateur(@PathParam("mail") String mail, @PathParam("mdp") String passe) {
         utilisateur = UtilisateurBDD.GenerateUtilisateur(mail, passe);
         String json = new Gson().toJson(utilisateur);
-        return json;
+        json =json.replace("\"", "'");
+        json =json.replace("[", "");
+        json =json.replace("]", "");
+        return Response.status(200).entity(json).type(MediaType.APPLICATION_JSON).build();
     }
+    
+
     /**
      * PUT method for updating or creating an instance of UtilisateurResource
      * @param content representation for the resource

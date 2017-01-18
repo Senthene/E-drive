@@ -57,7 +57,7 @@ public final class UtilisateurBDD {
                     String experience = SelectUtilisateur.getString("T01_EXPERIENCE");
                     String adresse = SelectUtilisateur.getString("T01_ADRESSE");
                     int codePostal = SelectUtilisateur.getInt("T01_CODE_POSTALE"); 
-                    String depatement = SelectUtilisateur.getString("T01_DEPARTEMENT"); 
+                    int depatement = SelectUtilisateur.getInt("T01_DEPARTEMENT"); 
                     String dateInscription = SelectUtilisateur.getString("T01_DATE_INSCRIPTION");
 
                     returnList.add(new Utilisateur(email, mdp, type, nom, prenom, dateNaissance, telephone, adresse, codePostal, depatement, dateInscription));

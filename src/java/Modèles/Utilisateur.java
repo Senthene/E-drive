@@ -16,14 +16,14 @@ public class Utilisateur {
     private int numeroTel;
     private String mail;
     private String adresse;
-    private String departement;
+    private int departement;
     private int codePostale;
     private String dateNaissance;
     private String dateInscription;
     protected int experience;
 
     
-    public Utilisateur (String m, String mdp, String type, String n, String p, String dateNaissance, int tel, String a, int c, String d, String dateInscription){
+    public Utilisateur (String m, String mdp, String type, String n, String p, String dateNaissance, int tel, String a, int c, int d, String dateInscription){
      
         this.mail = m;
         this.mdp= mdp;
@@ -46,10 +46,13 @@ public class Utilisateur {
         this.prenom = "";
         this.type="";
         this.mail="";
+        this.mdp= "";
         this.dateNaissance="";
         this.numeroTel=0;
         this.adresse = "";
         this.dateInscription = "";
+        this.codePostale = 0;
+        this.departement = 0;
         this.experience = -1;
 
     }
