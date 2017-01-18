@@ -19,6 +19,7 @@ function Connexion(){
                         alert(resp.reponse);
                     }
                     else{
+                        var userName = "<?php echo $_SESSION['username'] ?>";
                         document.getElementById('profil').click();
                     }
                  }

@@ -98,12 +98,12 @@
 			<div class="modal-content modal-popup">
 				<a  class="close-link"><i class="icon_close_alt2"></i></a>
 				<h3 class="white">Connexion</h3>
-				<form class="popup-form" >
+                                <form class="popup-form" method="post" action="HTML/Profil.html" >
                                         <input type="email" class="form-control form-white" placeholder="Email" id="email" onblur="verifMailConn(this)"/> 
                                         <input type="password" class="form-control form-white" placeholder="Mot de Passe" id="mdp" onblur="verif_champConn(this)"/> 
                                         
                                         <a class="btn btn-submit" onclick="Connexion()">Se connecter</a>
-                                        <a id="profil" href="HTML/Profil.html"></a>
+                                        <button type="submit" id="profil" style="display:none" ></button>
                  
                                 </form>
 			</div>
