@@ -41,7 +41,7 @@ public class MoniteurBDD {
             {
                 ResultSet SelectMoniteur = null;
                 if (dep == 0){
-                    SelectMoniteur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur LEFT JOIN t02_list_voiture ON T01_EMAIL = T02_EMAIL WHERE T01_CODEPOSTALE=\""+code+"\" AND T01_TYPE = \"Moniteur\" ");
+                    SelectMoniteur = instruction.executeQuery("SELECT * FROM t01_list_utilisateur LEFT JOIN t02_list_voiture ON T01_EMAIL = T02_EMAIL WHERE T01_CODE_POSTALE=\""+code+"\" AND T01_TYPE = \"Moniteur\" ");
                
                 }
                 else {
