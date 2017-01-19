@@ -200,23 +200,30 @@ jQuery(function($) {
                if (xmlhttp.readyState == 4) {
                  if ( xmlhttp.status == 200) {
                     var resp = eval( "(" +  xmlhttp.responseText + ")"); 
-                    var nom;
-                    var prenom;
-                    var type;
-                    var tel;
-                     var mail;
-                    var adresse;
                     
-                    
-                   
-                    var codepostale;
-                    var dateDeNaissance;
-                    var experience;
-                    var marque;
-                    var modele;
-                    var carburant;
-                    
-                   
+                    var compteur = 0;
+                    while(compteur < resp.length){
+                        
+                        var nom = resp[compteur].nom;
+                        // test console.log("nom =" + resp[compteur].nom);
+                        var prenom = resp[compteur].prenom;
+                        var type = resp[compteur].type;
+                        var tel = resp[compteur].numeroTel;
+                        var mail = resp[compteur].mail;
+                        var adresse = resp[compteur].adresse;                
+                        var codePostale = resp[compteur].codePostale;
+                        var dateNaissance = resp[compteur].dateNaissance;
+                        var experience = resp[compteur].experience;
+                        var marque = resp[compteur].voiture.marque;
+                        console.log("Marque de la voiture =" + resp[compteur].voiture.marque);
+                        var modele = resp[compteur].modele;
+                        var carburant = resp[compteur].carburant;
+                        
+                        //SCRIPT POUR AFFICHER
+                        
+                        compteur ++;
+
+                    }
                    alert (resp[0].nom);
                    console.log(resp.length);
                       console.log(resp);
