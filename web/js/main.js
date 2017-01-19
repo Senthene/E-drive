@@ -200,13 +200,30 @@ jQuery(function($) {
                if (xmlhttp.readyState == 4) {
                  if ( xmlhttp.status == 200) {
                     var resp = eval( "(" +  xmlhttp.responseText + ")"); 
-                    var key = "modele";
-                   // var jsonObject = JSON.parse(resp);
-                     
-                    //alert(jsonObject)
-                    alert(resp.mail);
-                      //alert(xmlhttp.responseText);
+                    var nom;
+                    var prenom;
+                    var type;
+                    var tel;
+                     var mail;
+                    var adresse;
+                    
+                    
+                   
+                    var codepostale;
+                    var dateDeNaissance;
+                    var experience;
+                    var marque;
+                    var modele;
+                    var carburant;
+                    
+                   
+                   alert (resp[0].nom);
+                   console.log(resp.length);
                       console.log(resp);
+                      console.log(resp[0].nom);
+                      alert(resp[0].nom);
+                      console.log(resp[1].voiture.modele);
+                      alert(resp[1].voiture.modele)
                   
                     if (resp.echec != null) {
                         alert(resp.echec);

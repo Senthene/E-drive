@@ -77,9 +77,9 @@ public class MoniteurServices {
     public Response getRecherche(@PathParam("codePostale") int codepostale,@PathParam("departement") int departement){
         moniteur = MoniteurBDD.rechercheMoniteur(codepostale, departement);
         String json = new Gson().toJson(moniteur);
-        json =json.replace("\"", "'");
-        json =json.replace("[", "");
-        json =json.replace("]", "");
+      //  json =json.replace("\"", "'");
+        //json =json.replace("[", "");
+        //json =json.replace("]", "");
         return Response.status(200).entity(json).type(MediaType.APPLICATION_JSON).build();
        
     }
