@@ -227,7 +227,7 @@ jQuery(function($) {
 			
                         
                         
-                    s = s + "<li> <div class=\"intro-table intro-table-second-hover\"><h5 class=\"white heading hide-hover\">"+nom +" "+ prenom+"</h5><div class=\"bottom\"><h4 class=\"white heading small-heading no-margin regular\">"+modele+"</h4><a href=\"#\" class=\"btn btn-white-fill expand\">Consulter les offres</a></div></div><\li>" ;}
+                    s = s + "<li> <div class=\"intro-table intro-table-second-hover\"><h5 class=\"white heading hide-hover\"><b>"+nom +" "+ prenom+"</b></h5><div class=\"bottom\"><h4 class=\"white heading small-heading no-margin regular\"><br>"+adresse+" "+codePostale+ "</br> <br><b>Voiture utilisés</b></br><br>"+marque+" "+modele+" "+carburant+"</br><br><i>"+experience+" cours donnés jusqu'à présent</i></br> </h4><a href=\"#\" class=\"btn btn-white-fill expand\">Consulter les offres</a></div></div><\li>" ;}
                         //SCRIPT POUR AFFICHER
                         
                         compteur ++;
