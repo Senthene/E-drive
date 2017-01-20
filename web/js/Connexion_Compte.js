@@ -19,8 +19,11 @@ function Connexion(){
                         alert(resp.reponse);
                     }
                     else{
-                        var userName = "<?php echo $_SESSION['username'] ?>";
+                        
+                        var monobjet_json = JSON.stringify(resp);
+                        sessionStorage.setItem("objet",monobjet_json );
                         document.getElementById('profil').click();
+                        
                     }
                  }
                  else {

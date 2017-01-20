@@ -107,31 +107,4 @@ public class UtilisateurResource {
         }        
     }
 
-
-    
-    // Mise à jour d'un profil
-    @PUT
-    @Consumes("text/plain")
-    @Path("MiseAJour")
-    public Response MAJProfilMoniteur(Utilisateur utilisateur) {
-        
-        return Response.status(200).entity(utilisateur.getAdresse()).type(MediaType.APPLICATION_JSON).build();
-        
-        /*@PathParam("mail") String mail,
-                                      @PathParam("mdp") String mdp,
-                                      @PathParam("nom") String nom,
-                                      @PathParam("prenom") String prenom,
-                                      @PathParam("numeroTel") int numeroTel,
-                                      @PathParam("adresse") String adresse,
-                                      @PathParam("departement") int departement,
-                                      @PathParam("codePostale") int codepostale){
-        res = MoniteurBDD.UpdateProfilMoniteur(mail, mdp, nom, prenom, numeroTel, adresse, departement, codepostale);
-        if (res = true){
-            return Response.status(200).entity(SUCCESS_RESULT).type(MediaType.APPLICATION_JSON).build();
-        }
-        else {
-            return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
-        }*/        
-    }
-
 }

@@ -123,7 +123,7 @@
         </style>
 </head>
 
-<body>
+<body onload="ChargementProfil()">
 	<div class="preloader">
 		<img src="../img/loader.gif" alt="Preloader image">
 
@@ -137,12 +137,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><img src="../img/logo.png" data-active-url="../img/logo-active.png" alt=""></a>
+				<a class="navbar-brand" href="#"><img src="../img/logo.png" data-active-url="../img/logo-active.png" alt="../index.html"></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
-					<li><a href="../index.html">Accueil</a></li>
 					<li><a href="#MesOffres">Mes offres </a></li>
 					<li><a href="#MonProfil">Mon Profil</a></li>
                                         <li><a href="#AjouterOffre">Ajouter une offre</a></li>
@@ -170,24 +169,22 @@
                                 <form id="modifier" class="popup-form" style="display: none" onsubmit="return verifForm(this)">
                                         <input type="text" class="form-control form-black" placeholder="Nom" id="nom" onblur="verif_champ(this)"/>
                                         <input type="text" class="form-control form-black" placeholder="Prénom" id="prénom" onblur="verif_champ(this)"/> 
-                                        <input type="date" class="form-control form-black" name="anniversaire" id="naissance">
                                         <input type="email" class="form-control form-black" placeholder="Email"  id="email" onblur="verifMail(this)"/> 
                                         <input type="password" class="form-control form-black" placeholder="Mot de passe" id="mdp" onblur="verif_champ(this)"/> 
-                                        <input type="password" class="form-control form-black" placeholder="Confirmez votre mot de passe" id="mdp2" onblur="verif_champ(this)"/>
                                         <input type="text" class="form-control form-black" name="addresse" id="addresse" size="40" placeholder="Votre Adresse" onblur="verif_champ(this)"/>
                                         <input type="text" class="form-control form-black" id="cp" name="cp" pattern="[0-9]*" maxlength="5" placeholder="Code Postal" onblur="verif_champ(this)"/>
-                                        <input type="hidden" class="form-control form-black" name="commune" id="commune"/>
                                         <input type="tel" class="form-control form-black" id="téléphone" pattern="^0[6-7][0-9]{8}$" maxlength="10" onblur="verif_champ(this)" placeholder="Votre Numéro de Téléphone" required>
                                         
                                         <button type="submit" class="btn btn-submit-inscription">Modifier votre compte</button>
 				</form>
                                 <div id="paragraphe" style="display: block">
-                                    <p id="NomPrenom" class="light muted">Aurélien Martin</p>                                   <p id="Email" class="light muted">martin@gmail.com</p>
-                                    <p id="Numero" class="light muted">06291519856</p>
-                                    <p id="Voiture" class="light muted">206</p>
-                                    <p id="Experience" class="light muted">15h</p>
-                                    <p id="Addresse" class="light muted">12 rue Albert Camus</p>
-                                    <p id="cp" class="light muted">91000</p>
+                                    <p id="NomPrenom" class="light muted"></p>                                   
+                                    <p id="Email" class="light muted"></p>
+                                    <p id="Numero" class="light muted"></p>
+                                    <p id="Voiture" class="light muted"></p>
+                                    <p id="Experience" class="light muted"></p>
+                                    <p id="Addresse" class="light muted"></p>
+                                    <p id="cp" class="light muted"></p>
                                 </div>
 
 			</div>

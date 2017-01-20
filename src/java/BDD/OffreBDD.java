@@ -5,6 +5,7 @@
  */
 package BDD;
 
+
 import Modèles.Utilisateur;
 import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import java.awt.Cursor;
@@ -25,7 +26,7 @@ import java.util.Date;
  * 
  */
 
-public final class UtilisateurBDD {
+public final class OffreBDD {
     
     static private Connection connexion;
     static private Statement instruction = null;
@@ -93,13 +94,13 @@ public final class UtilisateurBDD {
         return false; 
     }
       
-    static public boolean Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
+    static public boolean Ajouter(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
     {
         try {
             instruction = Connexion.Connexion();
             if (instruction!=null)
             {   
-                //ResultSet SelectUtilisateur = null;
+                ResultSet SelectUtilisateur = null;
                 SimpleDateFormat formater  = new SimpleDateFormat("dd-MM-yyyy");
                 Date aujourdhui = new Date();
                 String today = formater.format(aujourdhui);
@@ -109,7 +110,7 @@ public final class UtilisateurBDD {
                     return false;
                 } 
                 instruction.close();
-                //SelectUtilisateur.close();
+                SelectUtilisateur.close();
                 
             }
         } catch (SQLException e) {

@@ -63,7 +63,8 @@ function CreationCompte() {
                        var resp = eval( "(" +  xmlhttp.responseText + ")"); 
   
                        if(resp.resultat == 'Succès'){
-                           
+                           var monobjet_json = JSON.stringify(data);
+                           sessionStorage.setItem("objet",monobjet_json );
                            location.href="Profil.html";
                        }
                        
@@ -71,8 +72,7 @@ function CreationCompte() {
 
                  }              
     }
-    }
-
+}
 
 // Vérification du champs Texte
 function verif_champ(champ) {
@@ -95,25 +95,6 @@ function verifMail(champ){
     else
     {
         return true;
-//        var xmlhttp = new XMLHttpRequest();
-//        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Connexion/"+champ.value;
-//        xmlhttp.open('GET',url, true);
-//        xmlhttp.send(null);
-//        xmlhttp.onreadystatechange = function() {
-//            if (xmlhttp.status == 200) {
-//                var resp =xmlhttp.responseText;
-//                if (resp == false) {
-//                    //affCach(true, "checkEmail", xmlhttp.responseText);
-//                    surligne(champ, false);
-//                    //return true;
-//                }            
-//                else{   
-//                    //affCach(false, "checkEmail", xmlhttp.responseText);
-//                    surligne(champ, true);
-//                    //sreturn false;
-//                }
-//            }
-//        };
     } 
 }
 
