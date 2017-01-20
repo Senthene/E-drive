@@ -134,6 +134,57 @@ function ChargementProfil(){
     document.getElementById('Numero').innerHTML  = profil.numeroTel;
     document.getElementById('Addresse').innerHTML   = profil.adresse;
     document.getElementById('cp').innerHTML   = profil.codePostale;
-
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8080/E-DRIVE/webresources/Offre/ListeOffre/"+profil.mail;
+        xmlhttp.open('GET',url,true);
+        xmlhttp.send(null);
+        xmlhttp.onreadystatechange = function() {
+         
+               if (xmlhttp.readyState == 4) {
+                 if ( xmlhttp.status == 200) {
+                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+                    console.log(resp);
+                    var compteur = 0;
+                    var s="";
+                    while(compteur < resp.length){
+                        
+                        var date = resp[compteur].date;
+                        console.log(resp);
+                         console.log("date =" + date);
+                        var heureDebut = resp[compteur].heureDebut;
+                        var heureFin = resp[compteur].heureFin;
+                        var statut = resp[compteur].etatActuel;
+                        var prix = resp[compteur].prix;
+    
+                    s = s + "<li> <div class=\"row intro-tables\"><div class=\"col-md-4\"><div class=\"intro-table intro-table-first-hover\"><h5 class=\"white heading hide-hover\"> "+date+ "</h5><div class=\"bottom\"><h4 class=\"white heading small-heading no-margin regular\">Le cours a lieu de "+heureDebut+" "+"à "+heureFin+ " <br><b>Pour seulement "+prix+" €</b></br><i><br>Offre " +statut+"</i></br></h4> <a href=\"#\" class=\"btn btn-white-fill expand \">Supprimer</a></div></div></div><\li>" ;
+                        //SCRIPT POUR AFFICHER
+                      compteur ++;
+                    }
+                        var elem = document.getElementById('listeOffre');
+                                                //if (nom != null){
+                                            elem.innerHTML= s;
+                  }
+                  
+                
+                         
+                  /* test : alert (resp[0].nom);
+                   console.log(resp.length);
+                      console.log(resp);
+                      console.log(resp[0].nom);
+                      alert(resp[0].nom);
+                      console.log(resp[1].voiture.modele);
+                      alert(resp[1].voiture.modele) */
+                  
+                    if (resp.echec != null) {
+                        alert(resp.echec);
+                    }
+                 }
+                 else {
+                    alert("Error ->" + xmlhttp.responseText);
+                 }
+              }
+        
+    
+    
     
 }
