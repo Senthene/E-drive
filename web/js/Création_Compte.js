@@ -50,10 +50,23 @@ function CreationCompte() {
 
     var xmlhttp = new XMLHttpRequest();
     var dep = cp.substr(0,2);
-    var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Compte/Création/"+email+"/"+mdp+"/"+type+"/"+nom+"/"+prénom+"/"+dateNaissance+"/"+téléphone+"/"+adresse+"/"+cp+"/"+dep;
+    var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Inscription";
     xmlhttp.open('POST',url,true);
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send(null);
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    var data = JSON.stringify({"email":email,"nom":nom,"prénom":prénom,"dateNaissance":dateNaissance,"mdp":mdp,"téléphone":téléphone,"adresse":adresse,"cp":cp, "dep":dep});
+    xmlhttp.send(data);
+    xmlhttp.onreadystatechange = function() {
+         
+                if (xmlhttp.readyState == 4) {
+                 if ( xmlhttp.status == 200) {
+                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+                        alert(resp.email);
+                 }
+                 else {
+                    alert("Error ->" + xmlhttp.responseText);
+                 }
+              }
+        };
 }
 
 // Vérification du champs Texte

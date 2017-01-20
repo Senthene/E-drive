@@ -83,6 +83,7 @@ public class MoniteurServices {
         return Response.status(200).entity(json).type(MediaType.APPLICATION_JSON).build();
        
     }
+    
 
 }
 

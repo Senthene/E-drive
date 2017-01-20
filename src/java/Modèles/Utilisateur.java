@@ -2,11 +2,13 @@
 package Modèles;
 
 import BDD.UtilisateurBDD;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Sénthène
  */
+@XmlRootElement  
 public class Utilisateur {
     
     private String nom;
