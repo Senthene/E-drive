@@ -84,8 +84,9 @@
 						<p class="description">Vous êtes à la recherche d'un cours de conduite</p>
                                                 <input class="description" type="radio" name="Type" value="Elève"> <br>
 					</div>
+                                   
 				</div>
-                            <form class="popup-form" onsubmit="return verifForm(this)">
+                            <form class="popup-form" method="post" action="Profil.html">
                                         <input type="text" class="form-control form-black" placeholder="Nom" id="nom" onblur="verif_champ(this)"/>
                                         <input type="text" class="form-control form-black" placeholder="Prénom" id="prénom" onblur="verif_champ(this)"/> 
                                         <input type="date" class="form-control form-black" name="anniversaire" id="naissance">
@@ -97,7 +98,8 @@
                                         <input type="hidden" class="form-control form-black" name="commune" id="commune"/>
                                         <input type="tel" class="form-control form-black" id="téléphone" pattern="^0[6-7][0-9]{8}$" maxlength="10" onblur="verif_champ(this)" placeholder="Votre Numéro de Téléphone" required>
                                         
-                                        <button type="submit" class="btn btn-submit-inscription">Créer votre compte</button>
+                                        <a class="btn btn-submit" onclick="Inscription()">Créer votre compte</a>
+
 				</form>
 			</div>
 		</div>

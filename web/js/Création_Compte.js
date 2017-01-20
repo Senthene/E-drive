@@ -1,14 +1,14 @@
 //Vérification lors de l'ensemble des champs du formulaire
-function verifForm(f)
+function Inscription()
 {
-   var nomOK = verif_champ(f.nom);
-   var prénomOK = verif_champ(f.prénom);
-   var mailOk = verifMail(f.email);
-   var adresseOK = verif_champ(f.addresse);
-   var mdpOK = verif_champ(f.mdp);
-   var mdp2OK = verif_champ(f.mdp2);
-   var cpOK = verif_champ(f.cp);
-   var téléphoneOK = verif_champ(f.téléphone);
+   var nomOK = verif_champ(document.getElementById('nom'));
+   var prénomOK = verif_champ(document.getElementById('prénom'));
+   var mailOk = verifMail(document.getElementById('email'));
+   var adresseOK = verif_champ(document.getElementById('addresse'));
+   var mdpOK = verif_champ(document.getElementById('mdp'));
+   var mdp2OK = verif_champ(document.getElementById('mdp2'));
+   var cpOK = verif_champ(document.getElementById('cp'));
+   var téléphoneOK = verif_champ(document.getElementById('téléphone'));
    
    if(nomOK && prénomOK && mailOk && adresseOK && cpOK && téléphoneOK && mdpOK && mdp2OK){
         var mdp = document.getElementById('mdp').value;
@@ -53,21 +53,26 @@ function CreationCompte() {
     var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Inscription";
     xmlhttp.open('POST',url,true);
     xmlhttp.setRequestHeader("Content-type", "application/json");
-    var data = JSON.stringify({"email":email,"nom":nom,"prénom":prénom,"dateNaissance":dateNaissance,"mdp":mdp,"téléphone":téléphone,"adresse":adresse,"cp":cp, "dep":dep});
+    var data = JSON.stringify({"email":email,"type":type,"nom":nom,"prenom":prénom,"dateNaissance":dateNaissance,"mdp":mdp,"numeroTel":parseInt(téléphone),"adresse":adresse,"codePostale":parseInt(cp), "departement":parseInt(dep)});
+       
     xmlhttp.send(data);
     xmlhttp.onreadystatechange = function() {
          
-                if (xmlhttp.readyState == 4) {
-                 if ( xmlhttp.status == 200) {
-                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
-                        alert(resp.email);
-                 }
-                 else {
-                    alert("Error ->" + xmlhttp.responseText);
-                 }
-              }
-        };
-}
+                if (xmlhttp.readyState == 4 ) {
+                   if ( xmlhttp.status == 200) {
+                       var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+  
+                       if(resp.resultat == 'Succès'){
+                           
+                           location.href="Profil.html";
+                       }
+                       
+                   }
+
+                 }              
+    }
+    }
+
 
 // Vérification du champs Texte
 function verif_champ(champ) {
@@ -140,3 +145,4 @@ function génèreImage(champ){
         document.getElementById("Moniteur").style.display = "none";
     }
 }
+    

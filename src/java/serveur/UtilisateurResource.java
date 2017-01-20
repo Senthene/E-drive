@@ -5,14 +5,11 @@
  */
 package serveur;
 
+import BDD.MoniteurBDD;
 import BDD.UtilisateurBDD;
-
 import Modèles.Utilisateur;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
-import java.util.Map;
-import javax.json.Json;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -26,6 +23,8 @@ import javax.ws.rs.PathParam;
 import static javax.ws.rs.client.Entity.json;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * REST Web Service
@@ -40,8 +39,11 @@ public class UtilisateurResource {
     @Context
     private UriInfo context;
     private ArrayList <Utilisateur> utilisateur;
+
     private static final String SUCCESS_RESULT="{'resultat' : 'Succès'}";
     private static final String FAILURE_RESULT="{'resultat' : 'Echec'}";
+    private boolean res;
+
     
 
     /**
@@ -85,21 +87,51 @@ public class UtilisateurResource {
         }
         return Response.status(200).entity(json).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET").type(MediaType.APPLICATION_JSON).build();
     }
+
     //Création d'un compte
     @POST
-    @Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("Inscription")
-    public Response Inscription(String json){
-        
+    public Response Inscription(String s) throws JSONException{
 
-        System.out.println(json);
-        //res = UtilisateurBDD.Inscription(json, mdp, type, nom, prenom, dateNaissance, numeroTel, adresse, codepostale, departement);
-        //if (res = true){
-        return Response.status(200).entity(json).type(MediaType.APPLICATION_JSON).build();
-        // }
-        //else {
-          //  return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
-        //}        
+    
+        JSONObject jsonObj = new JSONObject(s);
+        
+       //Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
+        res = UtilisateurBDD.Inscription(jsonObj.getString("email"), jsonObj.getString("mdp"), jsonObj.getString("type"), jsonObj.getString("nom"), jsonObj.getString("prenom"), jsonObj.getString("dateNaissance"), jsonObj.getInt("numeroTel"), jsonObj.getString("adresse"), jsonObj.getInt("codePostale"), jsonObj.getInt("departement"));
+        if (res == true){
+            return Response.status(200).entity(SUCCESS_RESULT).type(MediaType.APPLICATION_JSON).build();
+        }
+        else {
+            return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
+        }        
+    }
+
+
+    
+    // Mise à jour d'un profil
+    @PUT
+    @Consumes("text/plain")
+    @Path("MiseAJour")
+    public Response MAJProfilMoniteur(Utilisateur utilisateur) {
+        
+        return Response.status(200).entity(utilisateur.getAdresse()).type(MediaType.APPLICATION_JSON).build();
+        
+        /*@PathParam("mail") String mail,
+                                      @PathParam("mdp") String mdp,
+                                      @PathParam("nom") String nom,
+                                      @PathParam("prenom") String prenom,
+                                      @PathParam("numeroTel") int numeroTel,
+                                      @PathParam("adresse") String adresse,
+                                      @PathParam("departement") int departement,
+                                      @PathParam("codePostale") int codepostale){
+        res = MoniteurBDD.UpdateProfilMoniteur(mail, mdp, nom, prenom, numeroTel, adresse, departement, codepostale);
+        if (res = true){
+            return Response.status(200).entity(SUCCESS_RESULT).type(MediaType.APPLICATION_JSON).build();
+        }
+        else {
+            return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
+        }*/        
     }
 
 }
