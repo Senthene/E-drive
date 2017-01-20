@@ -202,6 +202,7 @@ jQuery(function($) {
                     var resp = eval( "(" +  xmlhttp.responseText + ")"); 
                     
                     var compteur = 0;
+                    var s="";
                     while(compteur < resp.length){
                         
                         var nom = resp[compteur].nom;
@@ -216,21 +217,30 @@ jQuery(function($) {
                         var experience = resp[compteur].experience;
                         var marque = resp[compteur].voiture.marque;
                         console.log("Marque de la voiture =" + resp[compteur].voiture.marque);
-                        var modele = resp[compteur].modele;
-                        var carburant = resp[compteur].carburant;
+                        var modele = resp[compteur].voiture.modele;
+                        console.log(modele);
+                        var carburant = resp[compteur].voiture.carburant;
                         
+                        var elem = document.getElementById('listeMoniteur');
+                        if (nom != null){
+                        
+			
+                        
+                        
+                    s = s + "<li> <div class=\"intro-table intro-table-second-hover\"><h5 class=\"white heading hide-hover\">"+nom +" "+ prenom+"</h5><div class=\"bottom\"><h4 class=\"white heading small-heading no-margin regular\">"+modele+"</h4><a href=\"#\" class=\"btn btn-white-fill expand\">Consulter les offres</a></div></div><\li>" ;}
                         //SCRIPT POUR AFFICHER
                         
                         compteur ++;
 
                     }
-                   alert (resp[0].nom);
+                    elem.innerHTML= s;
+                  /* test : alert (resp[0].nom);
                    console.log(resp.length);
                       console.log(resp);
                       console.log(resp[0].nom);
                       alert(resp[0].nom);
                       console.log(resp[1].voiture.modele);
-                      alert(resp[1].voiture.modele)
+                      alert(resp[1].voiture.modele) */
                   
                     if (resp.echec != null) {
                         alert(resp.echec);
