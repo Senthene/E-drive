@@ -6,7 +6,10 @@
 package BDD;
 
 
+import Modèles.Moniteur;
+import Modèles.Offre;
 import Modèles.Utilisateur;
+import Modèles.Voiture;
 import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import java.awt.Cursor;
 import java.sql.Connection;
@@ -31,7 +34,7 @@ public final class OffreBDD {
     static private Connection connexion;
     static private Statement instruction = null;
     static private boolean resultat = false;
-
+      
     SimpleDateFormat formater  = null;
     private int nombreColonnes = 0;
     static private ResultSetMetaData metadata ;
@@ -119,4 +122,44 @@ public final class OffreBDD {
         return true;
     }
     
+    static public ArrayList<Offre> consultationOffre (String mail) throws SQLException, SQLException
+    {
+        ArrayList<Offre> returnList = new ArrayList();
+        
+        try {
+            instruction = Connexion.Connexion();
+            if (instruction!=null)
+                 {
+                ResultSet SelectOffre = null;
+                
+                    SelectOffre = instruction.executeQuery("SELECT * FROM t03_offre_moniteur WHERE  T03_EMAIL = \""+mail+"\"");
+               
+                        while (SelectOffre.next()) 
+
+
+                        {
+
+
+                            String idOffre = SelectOffre.getString("T03_ID_OFFRE_MONITEUR");
+                            String dateCours = SelectOffre.getString("T03_DATE_COURS");
+                            String heureDebut = SelectOffre.getString("T03_HEURE_DEBUT");
+                            String heureFin = SelectOffre.getString("T03_HEURE_FIN");
+                            int prix = SelectOffre.getInt("T03_PRIX");
+                            String statut = SelectOffre.getString("T03_STATUT");
+
+
+                            returnList.add(new Offre(dateCours,heureDebut, heureFin, statut, prix ));
+
+                             }
+                        instruction.close();
+                        SelectOffre.close();
+
+                  }
+            
+                }
+         catch (SQLException ex) {}
+        
+        return returnList;
+            
+    }    
 }

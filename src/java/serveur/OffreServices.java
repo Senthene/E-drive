@@ -5,8 +5,15 @@
  */
 package serveur;
 
+import BDD.MoniteurBDD;
+import BDD.OffreBDD;
 import BDD.UtilisateurBDD;
+import Modèles.Moniteur;
+import Modèles.Offre;
 import Modèles.Utilisateur;
+import com.google.gson.Gson;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -26,8 +33,8 @@ import org.json.JSONObject;
  *
  * @author Sénthène
  */
-@Path("generic")
-public class Offre {
+@Path("Offre")
+public class OffreServices {
 
     @Context
     private UriInfo context;
@@ -38,9 +45,10 @@ public class Offre {
     /**
      * Creates a new instance of Offre
      */
-    public Offre() {
+    public OffreServices() {
     }
 
+    private ArrayList <Offre> offres;
     /**
      * Retrieves representation of an instance of serveur.Offre
      * @return an instance of java.lang.String
@@ -58,19 +66,35 @@ public class Offre {
     //Création d'une offre
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("Ajouter")
-    public Response Inscription(String s) throws JSONException{
+    @Path("AjouterOffre")
+    public Response ajoutOffre(String s) throws JSONException{
 
     
         JSONObject jsonObj = new JSONObject(s);
         
        //Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
-        res = UtilisateurBDD.Inscription(jsonObj.getString("email"), jsonObj.getString("mdp"), jsonObj.getString("type"), jsonObj.getString("nom"), jsonObj.getString("prenom"), jsonObj.getString("dateNaissance"), jsonObj.getInt("numeroTel"), jsonObj.getString("adresse"), jsonObj.getInt("codePostale"), jsonObj.getInt("departement"));
+        //res = OffreBDD.Ajout(jsonObj.getString("email"), jsonObj.getString("mdp"), jsonObj.getString("type"), jsonObj.getString("nom"), jsonObj.getString("prenom"), jsonObj.getString("dateNaissance"), jsonObj.getInt("numeroTel"), jsonObj.getString("adresse"), jsonObj.getInt("codePostale"), jsonObj.getInt("departement"));
         if (res == true){
             return Response.status(200).entity(SUCCESS_RESULT).type(MediaType.APPLICATION_JSON).build();
         }
         else {
             return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
-        }        
+        }  
+        
     }
+        
+         @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("ListeOffre/{mail}")
+    public Response listeOffre(@PathParam("mail") String mail) throws SQLException{
+        offres = OffreBDD.consultationOffre(mail);
+        String json = new Gson().toJson(offres);
+      //  json =json.replace("\"", "'");
+        //json =json.replace("[", "");
+        //json =json.replace("]", "");
+        return Response.status(200).entity(json).type(MediaType.APPLICATION_JSON).build();
+       
+  
+    }
+
 }

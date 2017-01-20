@@ -15,24 +15,20 @@ import java.util.Date;
 // test 3
 public class Offre {
     
-    private Date date;
-    private Time heureDebut;
-    private Time heureFin;
-    private etat etatActuel;
+    private String date;
+    private String heureDebut;
+    private String heureFin;
+    private String etatActuel;
     private int prix;
     
-    public enum etat { 
-        Disponible, 
-        PasDisponible, 
-        Demandé, 
-        Reservé;
-    }
+ 
     
-     public Offre(Date d, Time hd, Time hf, etat t){
+     public Offre(String d, String hd, String hf, String t, int p){
         date = d;
         heureDebut = hd;
         heureFin = hf;
         etatActuel = t;
+        prix =p;
         
     }
      
