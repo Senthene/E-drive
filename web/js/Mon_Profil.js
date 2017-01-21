@@ -37,7 +37,7 @@ function MAJProfil(){
         var email = document.getElementById('email').value;
         var mdp = document.getElementById('mdp').value;
         var téléphone = document.getElementById('téléphone').value;
-        var advar email = document.getElementById('email').value;resse = document.getElementById('addresse').value;
+        var adresse = document.getElementById('addresse').value;
         var cp = document.getElementById('cp').value;
 
         var xmlhttp = new XMLHttpRequest();
@@ -273,41 +273,4 @@ function Connexion(email, mdp){
     {
        alert("Veuillez remplir correctement tous les champs");
     }*/
-}
-function Supprimer(){
-    var monobjet_json = sessionStorage.getItem("objet");
-    var profil = JSON.parse(monobjet_json);
-    var email = profil.mail;
-    
-
-        var xmlhttp = new XMLHttpRequest();
-
-        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Suppression";
-        xmlhttp.open('DELETE',url,true);
-        xmlhttp.setRequestHeader("Content-type", "application/json");
-        var data = JSON.stringify({"email":email);
-       
-        xmlhttp.send(data);
-        xmlhttp.onreadystatechange = function() {
-         
-                if (xmlhttp.readyState == 4) {
-                 if ( xmlhttp.status == 200) {
-                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
-                    
-                    if (resp.reponse != null) {
-                        alert(resp.reponse);
-                    }
-                    else{
-                       
-                        sessionStorage.clear();
-
-                        //return true;
-                        
-                    }
-                 }
-              }
-        };
-
-    
-}
 }
