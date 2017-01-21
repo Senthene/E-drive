@@ -35,92 +35,7 @@
         <script src="../js/Calendrier/moment.min.js" ></script>
         <script src="../js/Calendrier/jquery.min.js"></script>
         <script src="../js/Calendrier/fullcalendar.min.js" ></script>
-        <script>
-
-	$(document).ready(function() {
-
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay,listMonth'
-			},
-			defaultDate: '2016-12-12',
-			navLinks: true, // can click day/week names to navigate views
-			businessHours: true, // display business hours
-			editable: true,
-			events: [
-				{
-					title: 'Business Lunch',
-					start: '2016-12-03T13:00:00',
-					constraint: 'businessHours'
-				},
-				{
-					title: 'Meeting',
-					start: '2016-12-13T11:00:00',
-					constraint: 'availableForMeeting', // defined below
-					color: '#257e4a'
-				},
-				{
-					title: 'Conference',
-					start: '2016-12-18',
-					end: '2016-12-20'
-				},
-				{
-					title: 'Party',
-					start: '2016-12-29T20:00:00'
-				},
-
-				// areas where "Meeting" must be dropped
-				{
-					id: 'availableForMeeting',
-					start: '2016-12-11T10:00:00',
-					end: '2016-12-11T16:00:00',
-					rendering: 'background'
-				},
-				{
-					id: 'availableForMeeting',
-					start: '2016-12-13T10:00:00',
-					end: '2016-12-13T16:00:00',
-					rendering: 'background'
-				},
-
-				// red areas where no events can be dropped
-				{
-					start: '2016-12-24',
-					end: '2016-12-28',
-					overlap: false,
-					rendering: 'background',
-					color: '#ff9f89'
-				},
-				{
-					start: '2016-12-06',
-					end: '2016-12-08',
-					overlap: false,
-					rendering: 'background',
-					color: '#ff9f89'
-				}
-			]
-		});
-		
-	});
-
-        </script>
-        <style>
-
-	body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-
-        </style>
+        
 </head>
 
 <body onload="ChargementProfil()">
@@ -137,7 +52,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><img src="../img/logo.png" data-active-url="../img/logo-active.png" alt="../index.html"></a>
+				<a class="navbar-brand" href="../index.html"><img src="../img/logo.png" data-active-url="../img/logo-active.png" alt="../index.html"></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -146,14 +61,15 @@
             
                                    
 					<li><a href="#MonProfil">Mon Profil</a></li>
-                                        <li><a href="#AjouterOffre">Ajouter une offre</a></li>
-                                        <li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Se Déconnecter</a></li>
+                                        
+                                        
 					<li></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container-fluid -->
+        <div class="grid">
 	</nav>
 	<section id="MesOffres" class="section section-padded">
 		<div class="container">
@@ -161,18 +77,22 @@
 				<h2>Mes Offres</h2>
                                 
                                 <span> <ul display = "inline" id = "listeOffre" style="list-style-type:none">
- 
-                                    </ul> </span>
 	            
+                                    </ul> </span>
+ 
  
 	<div class="cut cut-bottom"></div>
+        <a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Ajouter une offre</a>
+
 	</section>
+    
 	<section id="MonProfil" class="section section-padded">
 		<div class="container">
 			<div class="row text-center title">
 				<h2>Mon profil</h2>
 				<img src="../img/team/profil.png" class="img-rounded" alt="Profil" width="304" height="236">
                                 <form id="modifier" class="popup-form" style="display: none" onsubmit="return verifForm(this)">
+                                        <button type="submit" class="btn btn-red" onclick="Supprimer()">Supprimer votre profil</button>
                                         <input type="text" class="form-control form-black" placeholder="Nom" id="nom" onblur="verif_champ(this)"/>
                                         <input type="text" class="form-control form-black" placeholder="Prénom" id="prénom" onblur="verif_champ(this)"/> 
                                         <input type="email" class="form-control form-black" placeholder="Email"  id="email" onblur="verifMail(this)"/> 
@@ -181,9 +101,10 @@
                                         <input type="text" class="form-control form-black" id="cp" name="cp" pattern="[0-9]*" maxlength="5" placeholder="Code Postal" onblur="verif_champ(this)"/>
                                         <input type="tel" class="form-control form-black" id="téléphone" pattern="^0[6-7][0-9]{8}$" maxlength="10" onblur="verif_champ(this)" placeholder="Votre Numéro de Téléphone" required>
                                         
-                                        <button type="submit" class="btn btn-submit-inscription">Modifier votre compte</button>
+                                        <button type="submit" class="btn btn-submit-inscription" onclick="MAJProfil()">Modifier votre compte</button>
 				</form>
                                 <div id="paragraphe" style="display: block">
+                                    
                                     <p id="NomPrenom" class="light muted"></p>                                   
                                     <p id="Email" class="light muted"></p>
                                     <p id="Numero" class="light muted"></p>
@@ -191,6 +112,7 @@
                                     <p id="Experience" class="light muted"></p>
                                     <p id="Addresse" class="light muted"></p>
                                     <p id="cp" class="light muted"></p>
+                                    
                                 </div>
 
 			</div>
@@ -205,13 +127,15 @@
 			<div class="modal-content modal-popup">
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 				<h3 class="white">Ajouter une offre</h3>
-				<form class="popup-form" onsubmit="return verifFormOffre(this)">
-                                        <input type="text" class="form-control form-white" placeholder="Votre prix" id="Prix" onblur="verifFormOffre(this)"/> 
-                                        <input type="date" class="form-control form-white" id="Date" onblur="verifFormOffre(this)"/> 
-                                        <input type="time" class="form-control form-white" id="Hdébut" onblur="verifFormOffre(this)"/> 
-                                        <input type="time" class="form-control form-white" id="HFin" onblur="verifFormOffre(this)"/>
-                                                                              
-                                        <button type="submit" class="btn btn-submit">Ajouter</button>
+				<form class="popup-form" onsubmit="return verif_champ(this)">
+                                        <input type="text" class="form-control form-black" id="ajoutcp" name="cp" pattern="[0-9]*" maxlength="5" placeholder="Code Postal" onblur="verif_champ(this)"/>
+                                        <input type="text" class="form-control form-white" placeholder="Votre prix" id="Prix" onblur="verif_champ(this)"/> 
+                                        <input type="date" class="form-control form-white" id="Date" onblur="verif_champ(this)"/> 
+                                        <input type="time" class="form-control form-white" id="HDebut" onblur="verif_champ(this)"/> 
+                                        <input type="time" class="form-control form-white" id="HFin" onblur="verif_champ(this)"/>
+                                         
+                                        <a class="btn btn-submit" onclick="AjouterOfffe()">Ajouter</a>
+                                        <button type="submit" id="offreAjout" style="display:none" ></button>
 				</form>
 			</div>
 		</div>

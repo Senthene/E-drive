@@ -14,7 +14,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import static javax.ws.rs.HttpMethod.DELETE;
 import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -105,6 +107,23 @@ public class UtilisateurResource {
         else {
             return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
         }        
+    }
+
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("Suppression")
+    public Response SuppresionUtilisateur(String s) throws JSONException {
+        
+       JSONObject jsonObj = new JSONObject(s);
+
+       //Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
+        res = UtilisateurBDD.SuppressionUtilisateur(jsonObj.getString("email"));
+        if (res == true){
+            return Response.status(200).entity(SUCCESS_RESULT).type(MediaType.APPLICATION_JSON).build();
+        }
+        else {
+            return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
+        }   
     }
 
 }

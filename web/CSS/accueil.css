@@ -207,7 +207,24 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 .btn:focus {
 	color: white;
 }
+.btn.btn-red {
+	background: #ff0043;
+}
 
+.btn.btn-red:hover {
+	background: #31b9ff;
+}
+
+.btn.btn-red-fill {
+	color: #ff0043;
+	border-color: #ff0043;
+	background: transparent;
+}
+
+.btn.btn-red-fill:hover {
+	color: white;
+	background: #ff0043;
+}
 .btn.btn-blue {
 	background: #00a8ff;
 }

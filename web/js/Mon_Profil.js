@@ -37,7 +37,7 @@ function MAJProfil(){
         var email = document.getElementById('email').value;
         var mdp = document.getElementById('mdp').value;
         var téléphone = document.getElementById('téléphone').value;
-        var adresse = document.getElementById('addresse').value;
+        var advar email = document.getElementById('email').value;resse = document.getElementById('addresse').value;
         var cp = document.getElementById('cp').value;
 
         var xmlhttp = new XMLHttpRequest();
@@ -55,8 +55,8 @@ function MAJProfil(){
                        var resp = eval( "(" +  xmlhttp.responseText + ")"); 
   
                        if(resp.resultat == 'Succès'){
-                           
-                           alert(resp.resultat);
+                            Connexion(email, mdp);
+                            ChargementProfil();
                        }
                        
                    }
@@ -68,6 +68,56 @@ function MAJProfil(){
       alert("Veuillez remplir correctement tous les champs");
    } 
 }
+
+function AjouterOfffe(){
+    
+    var monobjet_json = sessionStorage.getItem("objet");
+    var profil = JSON.parse(monobjet_json);
+
+   var email = profil.mail; 
+    
+   var cpOK = verif_champ(document.getElementById('ajoutcp'));
+   var prixOK = verif_champ(document.getElementById('Prix'));
+   var HdébutOk = verif_champ(document.getElementById('HDebut'));
+   var HfinOK = verif_champ(document.getElementById('HFin'));
+   var DateOK = verif_champ(document.getElementById('Date'));
+   
+    if(prixOK && HdébutOk && HfinOK && DateOK && cpOK ){
+        var cp = document.getElementById('ajoutcp').value;
+        var Prix = document.getElementById('Prix').value;
+        var Hdébut = document.getElementById('HDebut').value;
+        var HFin = document.getElementById('HFin').value;
+        var Date = document.getElementById('Date').value;
+
+        var xmlhttp = new XMLHttpRequest();
+        var dep = cp.substr(0,2);
+        var url = "http://localhost:8080/E-DRIVE/webresources/Offre/Ajouter";
+        xmlhttp.open('POST',url,true);
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        var data = JSON.stringify({"email":email,"cp":parseInt(cp),"Prix":parseInt(Prix),"Hdébut":Hdébut,"HFin":HFin,"Date":Date});
+       
+        xmlhttp.send(data);
+        xmlhttp.onreadystatechange = function() {
+         
+                if (xmlhttp.readyState == 4 ) {
+                   if ( xmlhttp.status == 200) {
+                       var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+  
+                       if(resp.resultat == 'Succès'){
+                           
+                           document.getElementById('offreAjout').click();
+                       }
+                       
+                   }
+
+                 }              
+        };
+    }
+    else {
+      alert("Veuillez remplir correctement tous les champs");
+   } 
+}
+
 //******************************************************************************
 //                          VERIFICATION DES CHAMPS
 //******************************************************************************
@@ -176,15 +226,88 @@ function ChargementProfil(){
                       alert(resp[1].voiture.modele) */
                   
                     if (resp.echec != null) {
-                        alert(resp.echec);
+                        //alert(resp.echec);
                     }
                  }
                  else {
-                    alert("Error ->" + xmlhttp.responseText);
+                    //alert("Error ->" + xmlhttp.responseText);
                  }
               }
         
     
     
     
+}
+
+function Connexion(email, mdp){
+
+        //var params = email+"/"+mdp;
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Connexionn/"+email+"/"+mdp;
+        xmlhttp.open('GET',url,true);
+        xmlhttp.send(null);
+        xmlhttp.onreadystatechange = function() {
+         
+                if (xmlhttp.readyState == 4) {
+                 if ( xmlhttp.status == 200) {
+                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+                    
+                    if (resp.reponse != null) {
+                        alert(resp.reponse);
+                    }
+                    else{
+                       
+                        sessionStorage.clear();
+                        var monobjet_jsonh = JSON.stringify(resp);
+                        sessionStorage.setItem("objet",monobjet_jsonh );
+                        //return true;
+                        
+                    }
+                 }
+              }
+        };
+
+
+   // }
+   /* else
+    {
+       alert("Veuillez remplir correctement tous les champs");
+    }*/
+}
+function Supprimer(){
+    var monobjet_json = sessionStorage.getItem("objet");
+    var profil = JSON.parse(monobjet_json);
+    var email = profil.mail;
+    
+
+        var xmlhttp = new XMLHttpRequest();
+
+        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Suppression";
+        xmlhttp.open('DELETE',url,true);
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        var data = JSON.stringify({"email":email);
+       
+        xmlhttp.send(data);
+        xmlhttp.onreadystatechange = function() {
+         
+                if (xmlhttp.readyState == 4) {
+                 if ( xmlhttp.status == 200) {
+                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+                    
+                    if (resp.reponse != null) {
+                        alert(resp.reponse);
+                    }
+                    else{
+                       
+                        sessionStorage.clear();
+
+                        //return true;
+                        
+                    }
+                 }
+              }
+        };
+
+    
+}
 }

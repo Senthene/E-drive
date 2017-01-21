@@ -88,7 +88,6 @@ public class MoniteurServices {
        
     }
     
-    
     // Mise à jour d'un profil Moniteur
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
@@ -106,6 +105,9 @@ public class MoniteurServices {
             return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
         }   
     }
+    
+    
+
     
 
 }

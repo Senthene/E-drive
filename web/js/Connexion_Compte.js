@@ -19,7 +19,6 @@ function Connexion(){
                         alert(resp.reponse);
                     }
                     else{
-                        
                         var monobjet_json = JSON.stringify(resp);
                         sessionStorage.setItem("objet",monobjet_json );
                         document.getElementById('profil').click();

@@ -66,14 +66,13 @@ public class OffreServices {
     //Création d'une offre
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("AjouterOffre")
+    @Path("Ajouter")
     public Response ajoutOffre(String s) throws JSONException{
 
     
         JSONObject jsonObj = new JSONObject(s);
-        
        //Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
-        //res = OffreBDD.Ajout(jsonObj.getString("email"), jsonObj.getString("mdp"), jsonObj.getString("type"), jsonObj.getString("nom"), jsonObj.getString("prenom"), jsonObj.getString("dateNaissance"), jsonObj.getInt("numeroTel"), jsonObj.getString("adresse"), jsonObj.getInt("codePostale"), jsonObj.getInt("departement"));
+        res = OffreBDD.AjouterOfrre(jsonObj.getString("email"), jsonObj.getString("Date"), jsonObj.getString("Hdébut"), jsonObj.getString("HFin"), jsonObj.getInt("cp"), jsonObj.getInt("Prix"));
         if (res == true){
             return Response.status(200).entity(SUCCESS_RESULT).type(MediaType.APPLICATION_JSON).build();
         }
@@ -83,7 +82,7 @@ public class OffreServices {
         
     }
         
-         @GET
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("ListeOffre/{mail}")
     public Response listeOffre(@PathParam("mail") String mail) throws SQLException{

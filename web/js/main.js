@@ -320,3 +320,26 @@ function consulterOffre(mail){
     
     
 }
+
+function ChargementProfil(){
+    
+    var connexion = document.getElementById("buttonConnexion");
+    var inscription = document.getElementById("buttonInscription");
+    var nom = document.getElementById("Name");
+    var monobjet_json = sessionStorage.getItem("objet");
+    var profil = JSON.parse(monobjet_json);
+    
+    var email = profil.mail;
+    if(email=="undefined"){
+        connexion.style.display = "block";
+        inscription.style.display ="block";
+        nom.style.display ="none";
+    }
+    else {
+        nom.style.display ="block";
+        document.getElementById('Name').innerHTML = profil.nom;
+        connexion.style.display = "none";
+        inscription.style.display ="none";
+    }
+
+}

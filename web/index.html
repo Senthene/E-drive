@@ -34,7 +34,7 @@
 	<link rel="stylesheet" type="text/CSS" href="CSS/accueil.css">
 </head>
 
-<body>
+<body onload="ChargementProfil()">
 	<div class="preloader">
 		<img src="img/loader.gif" alt="Preloader image">
 	</div>
@@ -55,8 +55,10 @@
 					<li><a href="#intro">Accueil</a></li>
 					<li><a href="#services">Services</a></li>
 					<li><a href="#team">Team</a></li>
-                                        <li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Se Connecter</a></li>
-                                        <li><a href="HTML/Inscription.html" class="btn btn-blue">Inscription</a></li>
+                                        <li><a href="#" data-toggle="modal"  id="buttonConnexion" data-target="#modal1" class="btn btn-blue">Se Connecter</a></li>
+                                        <li><a href="HTML/Inscription.html" id="buttonInscription" class="btn btn-blue">Inscription</a></li>
+                                        <li><a href="HTML/Profil.html" id="Name"  class="btn btn-blue" style="display: none"></a></li>
+                                       
 					<li></li>
 				</ul>
 			</div>
