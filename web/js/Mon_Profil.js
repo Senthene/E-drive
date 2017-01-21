@@ -238,6 +238,28 @@ function ChargementProfil(){
     
     
 }
-function supprimerOffre(date){
-    alert("success"+ date);
+function supprimerOffre(id){
+    alert("success "+ id);
+            var xmlhttp = new XMLHttpRequest();
+
+     var url = "http://localhost:8080/E-DRIVE/webresources/Offre/Supression/"+id;
+        xmlhttp.open('DELETE',url,true);
+       
+       
+        xmlhttp.send(null);
+        xmlhttp.onreadystatechange = function() {
+         
+                if (xmlhttp.readyState == 4 ) {
+                   if ( xmlhttp.status == 200) {
+                       alert("VOtre offre à été supprimé"); 
+  
+                       if(resp.resultat == 'Succès'){
+                           
+                           document.getElementById('offreAjout').click();
+                       }
+                       
+                   }
+
+                 }              
+};
 }

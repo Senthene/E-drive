@@ -98,8 +98,8 @@ public class OffreServices {
     }
         @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("Suppression")
-    public Response SuppresionOffre(int id) throws JSONException {
+    @Path("Suppression/{id}")
+    public Response SuppresionOffre(@PathParam("id")int id) throws JSONException {
         
        JSONObject jsonObj = new JSONObject(id);
 
