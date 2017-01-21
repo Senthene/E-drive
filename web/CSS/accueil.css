@@ -60,7 +60,8 @@ h5,
 h6 {
 	font-family: 'Roboto', 'Avenir Next', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
 	position: relative;
-	margin: 10px 0;
+	margin-top: 40px;
+        text-align: center;
 }
 
 h1 {
@@ -467,6 +468,7 @@ section {
 .intro-tables .intro-table .bottom {
 	position: absolute;
 	bottom: 0;
+        margin-right: 20px ;
 }
 
 .intro-tables .intro-table .owl-schedule .schedule-row {

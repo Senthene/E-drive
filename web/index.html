@@ -53,9 +53,8 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right main-nav">
 					<li><a href="#intro">Accueil</a></li>
-					<li><a href="#services">Services</a></li>
-					<li><a href="#team">Team</a></li>
-                                        <li><a href="#" data-toggle="modal"  id="buttonConnexion" data-target="#modal1" class="btn btn-blue">Se Connecter</a></li>
+					<li><a href="#services">Recherche</a></li>
+					<li><a href="#" data-toggle="modal"  id="buttonConnexion" data-target="#modal1" class="btn btn-blue">Se Connecter</a></li>
                                         <li><a href="HTML/Inscription.html" id="buttonInscription" class="btn btn-blue">Inscription</a></li>
                                         <li><a href="HTML/Profil.html" id="Name"  class="btn btn-blue" style="display: none"></a></li>
                                        
@@ -79,17 +78,14 @@
                                                                                           
                                                     <input  type="text" placeholder = "Recherchez par code postale ou par département" class="form-control form-white" id="recherche" />
                                                     <input type="button" class="btn btn-blue" onclick = "recherche()" value = "Rechercher un moniteur" />
-                                                    <div>  <ul id = "listeMoniteur" style="list-style-type:none">
- 
-                  </ul> </div>
-				</div>
+           				</div>
 			</div>
 		</div>
 
 	</header>
 
 	<section>
-		
+		 <div>  <ul id = "listeMoniteur" style="list-style-type:none">   </ul> </div>
 	</section>
 	<section id="services" class="section section-padded">
 		
@@ -142,7 +138,6 @@
 	<script src="js/jquery.onepagenav.js"></script>
 	<script src="js/main.js"></script>
         <script src="js/Connexion_Compte.js"></script>
-
 </body>
 
 </html>

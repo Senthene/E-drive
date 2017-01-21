@@ -202,13 +202,13 @@ jQuery(function($) {
                if (xmlhttp.readyState == 4) {
                  if ( xmlhttp.status == 200) {
                     var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+
                     
                     var compteur = 0;
                     var s="";
                     while(compteur < resp.length){
                         
                         var nom = resp[compteur].nom;
-                        // test console.log("nom =" + resp[compteur].nom);
                         var prenom = resp[compteur].prenom;
                         var type = resp[compteur].type;
                         var tel = resp[compteur].numeroTel;
@@ -225,17 +225,23 @@ jQuery(function($) {
                         
                         var elem = document.getElementById('listeMoniteur');
                         if (nom != null){
-                        
-			
-                        
-                        
-                    s = s + "<li> <div class=\"intro-table intro-table-second-hover\"><h5 class=\"white heading hide-hover\"><b>"+nom +" "+ prenom+"</b></h5><div class=\"bottom\"><h4 class=\"white heading small-heading no-margin regular\"><br>"+adresse+" "+codePostale+ "</br> <br><b>Voiture utilisés</b></br><br>"+marque+" "+modele+" "+carburant+"</br><br><i>"+experience+" cours donnés jusqu'à présent</i></br> </h4><a href=\"HTML/Offre.html \" class=\"btn btn-white-fill expand\">Consulter les offres</a></div></div><\li>" ;}
-                        //SCRIPT POUR AFFICHER
-                        
-                        compteur ++;
-
-                    }
-                    elem.innerHTML= s;
+                            s = s + "<li>\n\
+                                     <div class=\"intro-table-second-hover \">\n\
+                                        <h5 class=\"white heading hide-hover\">\n\
+                                        <b>"+ nom +" "+ prenom+"</b></h5>\n\
+                                        <div class=\"bottom\">\n\
+                                            <h4 class=\"white heading small-heading no-margin regular\"><br>"+adresse+" "+codePostale+ "</br><br>\n\
+                                                          <b>Voiture utilisés</b></br><br>"+marque+" "+modele+" "+carburant+"</br>\n\
+                                                           <br><i>"+experience+" cours donnés jusqu'à présent</i></br> \n\
+                                                            </h4><a id=\"href=\"HTML/Offre.html \" onclick=consulterOffre("+mail+") class=\"btn btn-white-fill expand\">Consulter ces offres</a>\n\
+                                                        </div>\n\
+                                     </div>\n\
+                                   <\li>" ;}
+                            //SCRIPT POUR AFFICHER
+                            
+                            compteur ++;
+                        }
+                        elem.innerHTML= s;
                   /* test : alert (resp[0].nom);
                    console.log(resp.length);
                       console.log(resp);
@@ -343,3 +349,4 @@ function ChargementProfil(){
     }
 
 }
+
