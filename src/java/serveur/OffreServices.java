@@ -18,6 +18,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -95,5 +96,21 @@ public class OffreServices {
        
   
     }
+        @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("Suppression")
+    public Response SuppresionOffre(int id) throws JSONException {
+        
+       JSONObject jsonObj = new JSONObject(id);
 
+       //Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
+        res = OffreBDD.supprimerOffre(jsonObj.getInt("id"));
+        if (res == true){
+            return Response.status(200).entity(SUCCESS_RESULT).type(MediaType.APPLICATION_JSON).build();
+        }
+        else {
+            return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
+        }   
+
+    }
 }

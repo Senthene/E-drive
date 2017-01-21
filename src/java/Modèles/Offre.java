@@ -20,15 +20,16 @@ public class Offre {
     private String heureFin;
     private String etatActuel;
     private int prix;
-    
+   private int id;
  
     
-     public Offre(String d, String hd, String hf, String t, int p){
+     public Offre(String d, String hd, String hf, String t, int p, int i){
         date = d;
         heureDebut = hd;
         heureFin = hf;
         etatActuel = t;
         prix =p;
+        id = i;
         
     }
      
