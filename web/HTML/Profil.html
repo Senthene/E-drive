@@ -92,7 +92,7 @@
 				<h2>Mon profil</h2>
 				<img src="../img/team/profil.png" class="img-rounded" alt="Profil" width="304" height="236">
                                 <form id="modifier" class="popup-form" style="display: none" onsubmit="return verifForm(this)">
-                                        
+                                       <button type="button" id="offreAjout" class="btn btn-red" onclick="SuppProfil()"> Supprimer le Profil</button> 
                                         <input type="text" class="form-control form-black" placeholder="Nom" id="nom" onblur="verif_champ(this)"/>
                                         <input type="text" class="form-control form-black" placeholder="Prénom" id="prénom" onblur="verif_champ(this)"/> 
                                         <input type="email" class="form-control form-black" placeholder="Email"  id="email" onblur="verifMail(this)"/> 
@@ -128,12 +128,17 @@
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
 				<h3 class="white">Ajouter une offre</h3>
 				<form class="popup-form" onsubmit="return verif_champ(this)">
+                                        <p id="Email" class="light muted">Commune de départ</p>
                                         <input type="text" class="form-control form-black" id="ajoutcp" name="cp" pattern="[0-9]*" maxlength="5" placeholder="Code Postal" onblur="verif_champ(this)"/>
+                                        <p id="Email" class="light muted">Prix de l'offe</p>
                                         <input type="text" class="form-control form-white" placeholder="Votre prix" id="Prix" onblur="verif_champ(this)"/> 
+                                        <p id="Email" class="light muted">Date de la leçon</p>
                                         <input type="date" class="form-control form-white" id="Date" onblur="verif_champ(this)"/> 
+                                        <p id="Email" class="light muted">Heure de début</p>
                                         <input type="time" class="form-control form-white" id="HDebut" onblur="verif_champ(this)"/> 
+                                        <p id="Email" class="light muted">Heure de fin</p>
                                         <input type="time" class="form-control form-white" id="HFin" onblur="verif_champ(this)"/>
-                                         
+                                       
                                         <a class="btn btn-submit" onclick="AjouterOfffe()">Ajouter</a>
                                         <button type="submit" id="offreAjout" style="display:none" ></button>
 				</form>

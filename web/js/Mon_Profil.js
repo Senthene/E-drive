@@ -263,3 +263,33 @@ function supprimerOffre(id){
                  }              
 };
 }
+//************************************************************
+//                      Supression d'un profil
+//*************************************************************
+function SuppProfil(){
+    var monobjet_json = sessionStorage.getItem("objet");
+    var profil = JSON.parse(monobjet_json);
+    var email = profil.mail;
+    
+
+        var xmlhttp = new XMLHttpRequest();
+
+        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Suppresion/";
+        xmlhttp.open('DELETE',url,true);
+     
+        xmlhttp.send(email);
+        xmlhttp.onreadystatechange = function() {
+         
+                if (xmlhttp.readyState == 4) {
+                 if ( xmlhttp.status == 200) {
+                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
+                    
+                    if(resp.resultat == 'Succès'){
+                        //sessionStorage.clear();
+                    }
+                 }
+              }
+        };
+
+    
+}

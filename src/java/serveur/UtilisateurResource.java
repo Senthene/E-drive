@@ -110,14 +110,10 @@ public class UtilisateurResource {
     }
 
     @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("Suppression")
-    public Response SuppresionUtilisateur(String s) throws JSONException {
+    @Path("Suppression/{mail}")
+    public Response SuppresionUtilisateur(@PathParam("mail") String mail) {
         
-       JSONObject jsonObj = new JSONObject(s);
-
-       //Inscription(String mail, String mdp, String type, String nom, String prenom, String dateNaissance, int tel, String a, int c, int d)
-        res = UtilisateurBDD.SuppressionUtilisateur(jsonObj.getString("email"));
+        res = UtilisateurBDD.SuppressionUtilisateur(mail);
         if (res == true){
             return Response.status(200).entity(SUCCESS_RESULT).type(MediaType.APPLICATION_JSON).build();
         }
@@ -125,5 +121,6 @@ public class UtilisateurResource {
             return Response.status(200).entity(FAILURE_RESULT).type(MediaType.APPLICATION_JSON).build();
         }   
     }
+
 
 }
