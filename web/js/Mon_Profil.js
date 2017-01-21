@@ -205,8 +205,9 @@ function ChargementProfil(){
                         var heureFin = resp[compteur].heureFin;
                         var statut = resp[compteur].etatActuel;
                         var prix = resp[compteur].prix;
+                        var id = resp[compteur].id;
     
-                    s = s + "<li> <div class=\"row intro-tables\"><div class=\"col-md-4\"><div class=\"intro-table intro-table-first-hover\"><h5 class=\"white heading hide-hover\"> "+date+ "</h5><div class=\"bottom\"><h4 class=\"white heading small-heading no-margin regular\">Le cours a lieu de "+heureDebut+" "+"à "+heureFin+ " <br><b>Pour seulement "+prix+" €</b></br><i><br>Offre " +statut+"</i></br></h4> <a href=\"#\" class=\"btn btn-white-fill expand \">Supprimer</a></div></div></div><\li>" ;
+                  s = s + "<li> <div class=\"row intro-tables\"><div class=\"col-md-4\"><div class=\"intro-table intro-table-first-hover\"><h5 class=\"white heading hide-hover\"> "+date+ "</h5><div class=\"bottom\"><h4 class=\"white heading small-heading no-margin regular\">Le cours a lieu de "+heureDebut+" "+"à "+heureFin+ " <br><b>Pour seulement "+prix+" €</b></br><i><br>Offre " +statut+"</i></br></h4> <a onclick = \"supprimerOffre("+id+")\" class=\"btn btn-white-fill expand \">Supprimer</a></div></div></div><\li>" ;
                         //SCRIPT POUR AFFICHER
                       compteur ++;
                     }
@@ -226,7 +227,7 @@ function ChargementProfil(){
                       alert(resp[1].voiture.modele) */
                   
                     if (resp.echec != null) {
-                        //alert(resp.echec);
+                       // alert(resp.echec);
                     }
                  }
                  else {
@@ -236,41 +237,7 @@ function ChargementProfil(){
         
     
     
-    
 }
-
-function Connexion(email, mdp){
-
-        //var params = email+"/"+mdp;
-        var xmlhttp = new XMLHttpRequest();
-        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Connexionn/"+email+"/"+mdp;
-        xmlhttp.open('GET',url,true);
-        xmlhttp.send(null);
-        xmlhttp.onreadystatechange = function() {
-         
-                if (xmlhttp.readyState == 4) {
-                 if ( xmlhttp.status == 200) {
-                    var resp = eval( "(" +  xmlhttp.responseText + ")"); 
-                    
-                    if (resp.reponse != null) {
-                        alert(resp.reponse);
-                    }
-                    else{
-                       
-                        sessionStorage.clear();
-                        var monobjet_jsonh = JSON.stringify(resp);
-                        sessionStorage.setItem("objet",monobjet_jsonh );
-                        //return true;
-                        
-                    }
-                 }
-              }
-        };
-
-
-   // }
-   /* else
-    {
-       alert("Veuillez remplir correctement tous les champs");
-    }*/
+function supprimerOffre(date){
+    alert("success"+ date);
 }
