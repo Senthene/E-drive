@@ -233,7 +233,7 @@ jQuery(function($) {
                                             <h4 class=\"white heading small-heading no-margin regular\"><br>"+adresse+" "+codePostale+ "</br><br>\n\
                                                           <b>Voiture utilisés</b></br><br>"+marque+" "+modele+" "+carburant+"</br>\n\
                                                            <br><i>"+experience+" cours donnés jusqu'à présent</i></br> \n\
-                                                            </h4><a id=\"href=\"HTML/Offre.html \" onclick=consulterOffre("+mail+") class=\"btn btn-white-fill expand\">Consulter ces offres</a>\n\
+                                                            </h4><a href=\"HTML/Offre.html\" onclick=\"consulterOffre("+mail+")\" class=\"btn btn-white-fill expand\">Consulter ces offres</a>\n\
                                                         </div>\n\
                                      </div>\n\
                                    <\li>" ;}
