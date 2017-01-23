@@ -242,7 +242,7 @@ function supprimerOffre(id){
     alert("success "+ id);
             var xmlhttp = new XMLHttpRequest();
 
-     var url = "http://localhost:8080/E-DRIVE/webresources/Offre/Supression/"+id;
+     var url = "http://localhost:8080/E-DRIVE/webresources/Offre/Suppression/"+id;
         xmlhttp.open('DELETE',url,true);
        
        
@@ -251,7 +251,7 @@ function supprimerOffre(id){
          
                 if (xmlhttp.readyState == 4 ) {
                    if ( xmlhttp.status == 200) {
-                       alert("VOtre offre à été supprimé"); 
+                       alert("Votre offre à été supprimé"); 
   
                        if(resp.resultat == 'Succès'){
                            
@@ -274,7 +274,7 @@ function SuppProfil(){
 
         var xmlhttp = new XMLHttpRequest();
 
-        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Suppresion/";
+        var url = "http://localhost:8080/E-DRIVE/webresources/Utilisateur/Suppression/";
         xmlhttp.open('DELETE',url,true);
      
         xmlhttp.send(email);
